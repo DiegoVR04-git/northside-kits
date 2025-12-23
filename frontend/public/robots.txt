@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /checkout
+
+Sitemap: https://northsidekits.ca/sitemap.xml
+Host: https://northsidekits.ca

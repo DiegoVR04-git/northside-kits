@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;600;700;800&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F8FAFC;
+  color: #0F172A;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0f172a;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e293b #f1f1f1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-md border border-white/30 shadow-sm;
+  }
+
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+
+  .btn-primary-lg {
+    @apply bg-blue-900 hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95;
+  }
+
+  /* Reusable Card */
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply card hover:border-slate-300 hover:-translate-y-1;
+  }
+
+  /* Premium Input */
+  .input-premium {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-900/10 transition-all duration-300 bg-white text-slate-900 placeholder-slate-400;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-block text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-900 to-slate-700 bg-clip-text text-transparent;
+  }
+}

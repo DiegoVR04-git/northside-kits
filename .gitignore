@@ -1,0 +1,11 @@
+# Dependencias (Miles de archivos basura)
+node_modules/
+*/node_modules/
+
+# Archivos de entorno (Seguridad - Tienen tus contraseñas)
+.env
+.DS_Store
+
+# Archivos de compilación
+dist/
+build/
