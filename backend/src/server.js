@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const productRoutes = require('./routes/productRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -14,7 +15,8 @@ app.use(cors()); // Permite que el Frontend (React) nos hable
 app.use(express.json()); // Permite recibir datos JSON
 
 // 3. Rutas
-app.use('/api/jerseys', productRoutes);
+app.use('/api/auth', authRoutes); // Authentication (Login)
+app.use('/api/jerseys', productRoutes); // Products (CRUD)
 
 // Test route to see if server is alive
 app.get('/', (req, res) => {

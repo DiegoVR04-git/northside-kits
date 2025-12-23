@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { upload } = require('../config/cloudinary'); 
+const { upload } = require('../config/cloudinary');
+const { verifyToken } = require('../middleware/auth');
 const { 
   getJerseys, 
   getFilters,      // <-- Agregado
@@ -15,9 +16,9 @@ router.get('/', getJerseys);
 router.get('/filters', getFilters); // <-- Ruta de filtros
 router.get('/:id', getJerseyById);
 
-// Rutas Admin
-router.post('/', upload.array('images', 5), createJersey);
-router.put('/:id', upload.array('images', 5), updateJersey);
-router.delete('/:id', deleteJersey);
+// Protected Admin Routes (Require JWT Token)
+router.post('/', verifyToken, upload.array('images', 5), createJersey);
+router.put('/:id', verifyToken, upload.array('images', 5), updateJersey);
+router.delete('/:id', verifyToken, deleteJersey);
 
 module.exports = router;

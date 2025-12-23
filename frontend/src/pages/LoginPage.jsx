@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Lock, Eye, EyeOff } from 'lucide-react'
+import axios from 'axios'
+import toast from 'react-hot-toast'
 
 function LoginPage() {
   const [password, setPassword] = useState('')
@@ -8,19 +10,30 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
     setIsLoading(true)
     
-    setTimeout(() => {
-      if (password === 'DiegoVidalesRodriguez01022004@') {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        { password }
+      )
+
+      if (response.data.success) {
+        // Store JWT token and admin flag
+        localStorage.setItem('adminToken', response.data.token)
         localStorage.setItem('isAdmin', 'true')
+        toast.success('✅ Login successful!')
         navigate('/admin')
-      } else {
-        alert('Incorrect password 🚫')
       }
+    } catch (error) {
+      console.error(error)
+      toast.error('❌ Invalid password')
+      setPassword('')
+    } finally {
       setIsLoading(false)
-    }, 500)
+    }
   }
 
   return (

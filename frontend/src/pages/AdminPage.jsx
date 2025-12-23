@@ -104,9 +104,13 @@ function AdminPage() {
         : `${import.meta.env.VITE_API_URL}/api/jerseys`
       
       const method = editingId ? 'put' : 'post'
+      const token = localStorage.getItem('adminToken')
 
       await axios[method](url, data, {
-        headers: { 'Content-Type': 'multipart/form-data' }
+        headers: { 
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${token}`
+        }
       })
 
       toast.success(editingId ? '✅ Jersey updated!' : '✅ Jersey created!')
@@ -114,21 +118,41 @@ function AdminPage() {
       fetchProducts()
     } catch (error) {
       console.error(error)
-      toast.error('❌ Error saving product. Check console.')
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        toast.error('❌ Session expired. Please login again.')
+        handleLogout()
+      } else {
+        toast.error('❌ Error saving product. Check console.')
+      }
     }
   }
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem('adminToken')
     toast((t) => (
       <div className="flex gap-3 items-center">
         <span>Delete this jersey?</span>
         <div className="flex gap-2">
           <button
             onClick={async () => {
-              await axios.delete(`${import.meta.env.VITE_API_URL}/api/jerseys/${id}`)
-              toast.dismiss(t.id)
-              toast.success('Jersey deleted')
-              fetchProducts()
+              try {
+                await axios.delete(`${import.meta.env.VITE_API_URL}/api/jerseys/${id}`, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                })
+                toast.dismiss(t.id)
+                toast.success('Jersey deleted')
+                fetchProducts()
+              } catch (error) {
+                toast.dismiss(t.id)
+                if (error.response?.status === 401 || error.response?.status === 403) {
+                  toast.error('Session expired. Please login again.')
+                  handleLogout()
+                } else {
+                  toast.error('Error deleting product')
+                }
+              }
             }}
             className="px-3 py-1 bg-red-600 text-white rounded-lg text-sm font-bold hover:bg-red-700"
           >
