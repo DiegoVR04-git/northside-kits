@@ -323,7 +323,7 @@ function ProductPage() {
               <Check size={20} className="text-emerald-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-emerald-900">Authentic & Verified</p>
-                <p className="text-sm text-emerald-700">Guaranteed original merchandise with secure worldwide shipping</p>
+                <p className="text-sm text-emerald-700">Guaranteed premium quality merchandise with secure shipping within Canada and the US</p>
               </div>
             </div>
           </div>
