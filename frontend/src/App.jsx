@@ -1,5 +1,5 @@
 import { Routes, Route, Link, Navigate, useLocation } from 'react-router-dom' // <--- IMPORTS Navigate
-import { ShoppingCart, Menu, X, MessageCircle, Heart } from 'lucide-react'
+import { ShoppingCart, Menu, X, MessageCircle, Heart, ChevronDown } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { Toaster, toast } from 'react-hot-toast'
 import { AnimatePresence } from 'framer-motion'
@@ -26,6 +26,7 @@ function App() {
   const { getWishlistCount } = useWishlist();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Server wake-up call on app mount
   useEffect(() => {
@@ -66,6 +67,19 @@ function App() {
             
             {/* Cart & Mobile Menu */}
             <div className="flex items-center gap-4 sm:gap-8">
+              {/* Information Dropdown (Desktop) */}
+              <div className="hidden md:block relative group">
+                <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-700 hover:bg-gray-100 transition-all duration-300 text-sm font-medium">
+                  Info
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
+                  <a href="/policy" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
+                    Shipping & Returns
+                  </a>
+                </div>
+              </div>
+
               {/* Wishlist Icon */}
               <Link 
                 to="/wishlist" 
@@ -116,6 +130,13 @@ function App() {
               >
                 Shop
               </Link>
+              <a 
+                href="/policy" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors"
+              >
+                Shipping & Returns
+              </a>
             </div>
           )}
         </div>

@@ -26,7 +26,7 @@ export default function PolicyPage() {
         {/* Content Section */}
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-16 md:py-24">
           {/* Shipping Policy */}
-          <div className="mb-16">
+          <div id="shipping" className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <MapPin className="w-8 h-8 text-blue-900" />
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900" style={{ fontFamily: 'Poppins' }}>
@@ -66,7 +66,7 @@ export default function PolicyPage() {
           </div>
 
           {/* Returns Policy */}
-          <div className="mb-16">
+          <div id="returns" className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <AlertCircle className="w-8 h-8 text-red-600" />
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900" style={{ fontFamily: 'Poppins' }}>
