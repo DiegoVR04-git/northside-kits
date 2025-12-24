@@ -8,11 +8,13 @@ import SkeletonCard from '../components/SkeletonCard'
 import LiveReviews from '../components/LiveReviews'
 import PageTransition from '../components/PageTransition'
 import { useWishlist } from '../context/WishlistContext'
+import SoccerLoader from '../components/SoccerLoader'
 
 function Home() {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   const [jerseys, setJerseys] = useState([])
   const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
   const [displayLimit, setDisplayLimit] = useState(28)
   const [filters, setFilters] = useState({
     search: '',
@@ -46,6 +48,7 @@ function Home() {
   useEffect(() => {
     const fetchJerseys = async () => {
       try {
+        setIsLoading(true)
         setLoading(true)
         const params = new URLSearchParams()
         
@@ -59,9 +62,11 @@ function Home() {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/jerseys?${params}`)
         setJerseys(response.data)
         setLoading(false)
+        setIsLoading(false)
       } catch (error) {
         console.error("Error:", error)
         setLoading(false)
+        setIsLoading(false)
       }
     }
     fetchJerseys()
@@ -233,7 +238,9 @@ function Home() {
 
       {/* PRODUCTS GRID */}
       <section id="products" className="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        {loading ? (
+        {isLoading ? (
+          <SoccerLoader />
+        ) : loading ? (
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {[...Array(8)].map((_, index) => (
