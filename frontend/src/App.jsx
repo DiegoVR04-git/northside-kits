@@ -172,7 +172,7 @@ function App() {
                 <span className="text-2xl">⚽</span>
                 NorthSide Kits
               </h3>
-              <p className="text-slate-400 text-sm">Premium authentic football jerseys shipped across Canada</p>
+              <p className="text-slate-400 text-sm">Premium jerseys shipped to Canada & the US</p>
             </div>
             <div>
               <h4 className="font-bold mb-4 uppercase tracking-wide text-xs">Information</h4>
