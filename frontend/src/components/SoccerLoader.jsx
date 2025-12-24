@@ -22,7 +22,7 @@ function SoccerLoader() {
       
       {/* Loading Text */}
       <p className="text-lg font-semibold text-slate-700">
-        Calentando motores... (Despertando al servidor)
+        Warming up the engines... (Waking up the server)
       </p>
     </div>
   )
