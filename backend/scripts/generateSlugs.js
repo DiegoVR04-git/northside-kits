@@ -3,8 +3,8 @@
  * Ejecutar con: node backend/scripts/generateSlugs.js
  */
 
+require('dotenv').config({ path: '.env' });
 const mongoose = require('mongoose');
-require('dotenv').config({ path: '../.env' });
 const Jersey = require('../src/models/Jersey');
 
 const generateSlug = (name, team, season) => {
@@ -27,13 +27,10 @@ const generateSlug = (name, team, season) => {
 
 async function generateSlugs() {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/jersey-shop';
+    const mongoURI = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/jersey-shop';
     
     console.log('🔗 Conectando a MongoDB...');
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(mongoURI);
 
     console.log('📊 Buscando productos sin slug...');
     const jerseysWithoutSlug = await Jersey.find({ slug: { $exists: false } });

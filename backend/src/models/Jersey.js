@@ -59,27 +59,27 @@ const jerseySchema = new mongoose.Schema({
 });
 
 // Pre-save hook to auto-generate slug from name
-jerseySchema.pre('save', async function(next) {
-  if (!this.isModified('name')) return next();
-  
-  // Generate slug from name: "Messi 2015" -> "messi-2015"
-  let slug = this.name
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[^\w\-]/g, '') // Remove special characters
-    .replace(/\-+/g, '-'); // Replace multiple hyphens with single hyphen
-  
-  // Add team and season to make it more unique
-  if (this.team) {
-    slug = `${slug}-${this.team.toLowerCase().replace(/\s+/g, '-')}`;
+jerseySchema.pre('save', function() {
+  // Only generate slug if name has been modified or if slug doesn't exist
+  if (this.isModified('name') || !this.slug) {
+    // Generate slug from name: "Messi 2015" -> "messi-2015"
+    let slug = this.name
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/[^\w\-]/g, '') // Remove special characters
+      .replace(/\-+/g, '-'); // Replace multiple hyphens with single hyphen
+    
+    // Add team and season to make it more unique
+    if (this.team) {
+      slug = `${slug}-${this.team.toLowerCase().replace(/\s+/g, '-')}`;
+    }
+    if (this.season) {
+      slug = `${slug}-${this.season}`;
+    }
+    
+    this.slug = slug;
   }
-  if (this.season) {
-    slug = `${slug}-${this.season}`;
-  }
-  
-  this.slug = slug;
-  next();
 });
 
 const Jersey = mongoose.model('Jersey', jerseySchema);
