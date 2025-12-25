@@ -10,6 +10,7 @@ import PageTransition from '../components/PageTransition'
 import { useWishlist } from '../context/WishlistContext'
 import SoccerLoader from '../components/SoccerLoader'
 import SEO from '../components/SEO'
+import FAQ from '../components/FAQ'
 
 function Home() {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
@@ -411,6 +412,9 @@ function Home() {
 
       {/* LIVE REVIEWS SECTION - DYNAMIC COMMUNITY */}
       <LiveReviews />
+
+      {/* FAQ SECTION */}
+      <FAQ />
 
       {/* REQUEST A KIT BANNER - CUSTOM SOURCING */}
       <section className="w-full bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16 md:py-20">
