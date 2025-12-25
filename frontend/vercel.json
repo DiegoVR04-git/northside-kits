@@ -6,12 +6,10 @@
     {
       "src": "/sitemap.xml",
       "dest": "/api/sitemap.js"
-    }
-  ],
-  "rewrites": [
+    },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
