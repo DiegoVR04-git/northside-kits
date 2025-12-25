@@ -417,6 +417,13 @@ function ProductPage() {
                     <p className="text-sm text-slate-700">For a normal athletic fit</p>
                   </div>
                 </div>
+                <div className="flex gap-3">
+                  <span className="text-2xl">👕</span>
+                  <div>
+                    <p className="font-bold text-slate-900">Player Versions</p>
+                    <p className="text-sm text-slate-700">Size up for a looser, more comfortable fit</p>
+                  </div>
+                </div>
               </div>
               <button
                 onClick={() => setSizingTipsOpen(false)}
