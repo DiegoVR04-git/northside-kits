@@ -25,44 +25,40 @@ export default function FitRecommendationModal({ isOpen, onClose, availableSizes
 
     // Convert to cm if needed
     let heightCm = unit === 'cm' ? parseFloat(height) : parseFloat(height) * 2.54
-    let weightKg = parseFloat(weight) // Assuming weight is always in kg, or could add unit toggle
+    let weightKg = parseFloat(weight)
 
-    let bestMatch = null
-    let bestScore = -1
+    let bestSize = null
+    let bestScore = -Infinity
 
-    // Find the size with the best match
+    // Score each available size based on how well it fits the measurements
     Object.entries(sizeChart).forEach(([size, range]) => {
-      // Check if available
       if (!availableSizes.includes(size)) return
 
-      const heightMatch = heightCm >= range.heightMin && heightCm <= range.heightMax ? 1 : 0
-      const weightMatch = weightKg >= range.weightMin && weightKg <= range.weightMax ? 1 : 0
-      const score = heightMatch + weightMatch
+      // Calculate how far we are from the ideal range (closer to middle is better)
+      const heightMiddle = (range.heightMin + range.heightMax) / 2
+      const weightMiddle = (range.weightMin + range.weightMax) / 2
+      
+      const heightRange = range.heightMax - range.heightMin
+      const weightRange = range.weightMax - range.weightMin
 
-      // If both match, it's a perfect fit
+      // Check if within range (bonus if within range)
+      const heightInRange = heightCm >= range.heightMin && heightCm <= range.heightMax ? 2 : 0
+      const weightInRange = weightKg >= range.weightMin && weightKg <= range.weightMax ? 2 : 0
+
+      // Calculate distance from middle (negative because we subtract)
+      const heightDistance = Math.abs(heightCm - heightMiddle) / heightRange
+      const weightDistance = Math.abs(weightKg - weightMiddle) / weightRange
+
+      // Total score: higher is better
+      const score = (heightInRange + weightInRange) - (heightDistance + weightDistance)
+
       if (score > bestScore) {
         bestScore = score
-        bestMatch = size
+        bestSize = size
       }
     })
 
-    // If no perfect match, find closest
-    if (!bestMatch) {
-      let minDifference = Infinity
-      Object.entries(sizeChart).forEach(([size, range]) => {
-        if (!availableSizes.includes(size)) return
-        const heightDiff = Math.abs(heightCm - (range.heightMin + range.heightMax) / 2)
-        const weightDiff = Math.abs(weightKg - (range.weightMin + range.weightMax) / 2)
-        const totalDiff = heightDiff + weightDiff
-
-        if (totalDiff < minDifference) {
-          minDifference = totalDiff
-          bestMatch = size
-        }
-      })
-    }
-
-    setRecommendedSize(bestMatch)
+    setRecommendedSize(bestSize || 'M') // Default to M if nothing found
   }
 
   if (!isOpen) return null
