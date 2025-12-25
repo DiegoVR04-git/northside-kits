@@ -7,6 +7,7 @@ import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import SizeGuideModal from '../components/SizeGuideModal'
+import FitRecommendationModal from '../components/FitRecommendationModal'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTransition from '../components/PageTransition'
 
@@ -21,6 +22,7 @@ function ProductPage() {
   const [addedToCart, setAddedToCart] = useState(false)
   const [relatedProducts, setRelatedProducts] = useState([])
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
+  const [fitRecommendationOpen, setFitRecommendationOpen] = useState(false)
 
   useEffect(() => {
     const fetchJersey = async () => {
@@ -264,12 +266,20 @@ function ProductPage() {
                   {jersey.sizes.length > 0 ? "Select Your Size" : "Status"}
                 </h3>
                 {jersey.sizes.length > 0 && (
-                  <button
-                    onClick={() => setSizeGuideOpen(true)}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
-                  >
-                    📏 Size Guide
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setFitRecommendationOpen(true)}
+                      className="px-4 py-2 bg-blue-100 text-blue-900 text-sm font-bold rounded-lg hover:bg-blue-200 transition-colors"
+                    >
+                      👕 Which Size Fits Me?
+                    </button>
+                    <button
+                      onClick={() => setSizeGuideOpen(true)}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
+                    >
+                      📏 Size Guide
+                    </button>
+                  </div>
                 )}
               </div>
               
@@ -385,6 +395,13 @@ function ProductPage() {
       <SizeGuideModal 
         isOpen={sizeGuideOpen} 
         onClose={() => setSizeGuideOpen(false)}
+      />
+
+      {/* FIT RECOMMENDATION MODAL */}
+      <FitRecommendationModal 
+        isOpen={fitRecommendationOpen} 
+        onClose={() => setFitRecommendationOpen(false)}
+        availableSizes={jersey?.sizes || []}
       />
 
       {/* STICKY MOBILE ADD TO CART BAR */}
