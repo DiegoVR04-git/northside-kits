@@ -139,7 +139,7 @@ export default function SecurityDepositPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-16">
             <a
               href={`https://wa.me/${MY_PHONE_NUMBER}?text=Hi%20NorthSide%20Kits,%20I%20have%20sent%20my%20security%20deposit.%20Please%20find%20the%20screenshot%20attached.`}
               target="_blank"
@@ -149,6 +149,15 @@ export default function SecurityDepositPage() {
             >
               <MessageCircle className="w-5 h-5" />
               Send Screenshot via WhatsApp
+            </a>
+            
+            <a
+              href="sms:(604)265-3223?body=Hi%20NorthSide%20Kits,%20I%20have%20sent%20my%20security%20deposit.%20Please%20confirm."
+              className="flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-md"
+              style={{ fontFamily: 'Inter' }}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Send Text Message
             </a>
             
             <Link
@@ -192,68 +201,6 @@ export default function SecurityDepositPage() {
               <p className="text-slate-700 text-lg leading-relaxed font-semibold" style={{ fontFamily: 'Inter' }}>
                 Once your first order is completed successfully, you will be added to our <strong className="text-emerald-700">Trusted Customers List</strong> and no further deposits will be required for future orders.
               </p>
-            </div>
-          </div>
-
-          {/* Payment Methods */}
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8" style={{ fontFamily: 'Poppins' }}>
-              Payment Methods
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Interac E-Transfer Card */}
-              <div className="bg-white border-2 border-slate-200 rounded-2xl p-8 hover:shadow-lg hover:border-blue-400 transition-all duration-300">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Lock className="w-6 h-6 text-blue-900" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: 'Poppins' }}>
-                    Interac E-Transfer (Canada)
-                  </h3>
-                </div>
-                <p className="text-slate-600 mb-4" style={{ fontFamily: 'Inter' }}>
-                  Fast and secure money transfer
-                </p>
-                <div className="bg-slate-50 rounded-lg p-4 mb-4">
-                  <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Email Address</p>
-                  <p className="text-lg font-bold text-slate-900 break-all">diegovidales0104@gmail.com</p>
-                </div>
-                <p className="text-sm text-slate-600 italic" style={{ fontFamily: 'Inter' }}>
-                  ℹ️ Please use this <strong>Gmail address</strong> specifically for E-transfers.
-                </p>
-              </div>
-
-              {/* PayPal Card */}
-              <div className="bg-white border-2 border-slate-200 rounded-2xl p-8 hover:shadow-lg hover:border-blue-400 transition-all duration-300">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-blue-900" />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900" style={{ fontFamily: 'Poppins' }}>
-                    PayPal (Secure)
-                  </h3>
-                </div>
-                <p className="text-slate-600 mb-4" style={{ fontFamily: 'Inter' }}>
-                  Buyer protection and instant payment
-                </p>
-                <div className="bg-slate-50 rounded-lg p-4 mb-4">
-                  <p className="text-sm text-slate-500 uppercase font-semibold mb-2">Email Address</p>
-                  <p className="text-lg font-bold text-slate-900 break-all">diegovidales0104@icloud.com</p>
-                </div>
-                <p className="text-sm text-slate-600 italic mb-4" style={{ fontFamily: 'Inter' }}>
-                  ℹ️ Please use this <strong>iCloud address</strong> specifically for PayPal.
-                </p>
-                <a
-                  href="https://www.paypal.com/paypalme/NorthsideKits"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-all duration-300 text-center"
-                  style={{ fontFamily: 'Inter' }}
-                >
-                  Pay via PayPal
-                </a>
-              </div>
             </div>
           </div>
         </div>
