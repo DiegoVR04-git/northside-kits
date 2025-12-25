@@ -3,11 +3,11 @@ import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
-import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react'
+import { ArrowLeft, ShoppingCart, Check, Heart, X } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import SizeGuideModal from '../components/SizeGuideModal'
-import FitRecommendationModal from '../components/FitRecommendationModal'
+import SizeRecommendation from '../components/SizeRecommendation'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTransition from '../components/PageTransition'
 
@@ -22,7 +22,7 @@ function ProductPage() {
   const [addedToCart, setAddedToCart] = useState(false)
   const [relatedProducts, setRelatedProducts] = useState([])
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
-  const [fitRecommendationOpen, setFitRecommendationOpen] = useState(false)
+  const [sizeRecommendationOpen, setSizeRecommendationOpen] = useState(false)
 
   useEffect(() => {
     const fetchJersey = async () => {
@@ -266,12 +266,12 @@ function ProductPage() {
                   {jersey.sizes.length > 0 ? "Select Your Size" : "Status"}
                 </h3>
                 {jersey.sizes.length > 0 && (
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     <button
-                      onClick={() => setFitRecommendationOpen(true)}
+                      onClick={() => setSizeRecommendationOpen(true)}
                       className="px-4 py-2 bg-blue-100 text-blue-900 text-sm font-bold rounded-lg hover:bg-blue-200 transition-colors"
                     >
-                      👕 Which Size Fits Me?
+                      ❓ What size fits me?
                     </button>
                     <button
                       onClick={() => setSizeGuideOpen(true)}
@@ -397,12 +397,25 @@ function ProductPage() {
         onClose={() => setSizeGuideOpen(false)}
       />
 
-      {/* FIT RECOMMENDATION MODAL */}
-      <FitRecommendationModal 
-        isOpen={fitRecommendationOpen} 
-        onClose={() => setFitRecommendationOpen(false)}
-        availableSizes={jersey?.sizes || []}
-      />
+      {/* SIZE RECOMMENDATION MODAL */}
+      {sizeRecommendationOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setSizeRecommendationOpen(false)}
+              className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-lg transition-colors z-10"
+            >
+              <X className="w-6 h-6 text-gray-600" />
+            </button>
+            
+            {/* Component */}
+            <div className="p-8">
+              <SizeRecommendation />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* STICKY MOBILE ADD TO CART BAR */}
       {jersey && (
