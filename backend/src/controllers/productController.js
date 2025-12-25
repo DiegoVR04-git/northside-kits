@@ -146,11 +146,75 @@ const deleteJersey = async (req, res) => {
   }
 };
 
+// ==========================================
+// SITEMAP - Dynamic XML Generation for SEO
+// ==========================================
+const getSitemap = async (req, res) => {
+  try {
+    // Fetch all products with only slug and updatedAt (fast query)
+    const products = await Jersey.find({}, { slug: 1, updatedAt: 1 }).lean();
+
+    // Base URL
+    const baseURL = 'https://northsidekits.ca';
+
+    // Start XML
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+
+    // Static pages
+    const staticPages = [
+      { loc: '', changefreq: 'weekly', priority: 1.0, lastmod: new Date().toISOString().split('T')[0] },
+      { loc: 'login', changefreq: 'monthly', priority: 0.8, lastmod: new Date().toISOString().split('T')[0] },
+      { loc: 'cart', changefreq: 'never', priority: 0.5, lastmod: new Date().toISOString().split('T')[0] },
+      { loc: 'wishlist', changefreq: 'never', priority: 0.5, lastmod: new Date().toISOString().split('T')[0] },
+      { loc: 'policy', changefreq: 'yearly', priority: 0.3, lastmod: new Date().toISOString().split('T')[0] },
+      { loc: 'security-deposit', changefreq: 'yearly', priority: 0.3, lastmod: new Date().toISOString().split('T')[0] }
+    ];
+
+    // Add static pages to sitemap
+    staticPages.forEach(page => {
+      const url = page.loc ? `${baseURL}/${page.loc}` : baseURL;
+      const lastmod = page.lastmod.split('T')[0]; // YYYY-MM-DD format
+      xml += '  <url>\n';
+      xml += `    <loc>${url}</loc>\n`;
+      xml += `    <lastmod>${lastmod}</lastmod>\n`;
+      xml += `    <changefreq>${page.changefreq}</changefreq>\n`;
+      xml += `    <priority>${page.priority}</priority>\n`;
+      xml += '  </url>\n';
+    });
+
+    // Add dynamic product pages
+    products.forEach(product => {
+      if (product.slug) {
+        const lastmod = product.updatedAt ? product.updatedAt.toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
+        xml += '  <url>\n';
+        xml += `    <loc>${baseURL}/product/${product.slug}</loc>\n`;
+        xml += `    <lastmod>${lastmod}</lastmod>\n`;
+        xml += '    <changefreq>weekly</changefreq>\n';
+        xml += '    <priority>0.8</priority>\n';
+        xml += '  </url>\n';
+      }
+    });
+
+    // Close XML
+    xml += '</urlset>';
+
+    // Set header and send
+    res.setHeader('Content-Type', 'application/xml');
+    res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
+    res.send(xml);
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    res.status(500).json({ message: 'Error generating sitemap' });
+  }
+};
+
 module.exports = { 
   getJerseys, 
   getFilters, 
   getJerseyById, 
   createJersey, 
   deleteJersey, 
-  updateJersey 
+  updateJersey,
+  getSitemap
 };

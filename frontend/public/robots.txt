@@ -21,6 +21,9 @@ Allow: /
 User-agent: YandexBot
 Allow: /
 
+# Dynamic sitemap generated from backend database
 Sitemap: https://northsidekits.ca/sitemap.xml
+Sitemap: https://northsidekits.ca/api/jerseys/sitemap.xml
+
 Host: https://northsidekits.ca
 Crawl-delay: 1

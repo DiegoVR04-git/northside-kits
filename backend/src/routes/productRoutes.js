@@ -8,10 +8,12 @@ const {
   getJerseyById, 
   createJersey, 
   deleteJersey,
-  updateJersey 
+  updateJersey,
+  getSitemap       // <-- Agregado
 } = require('../controllers/productController');
 
 // Public Routes
+router.get('/sitemap.xml', getSitemap);  // Sitemap must be before /:id to avoid conflict
 router.get('/', getJerseys);
 router.get('/filters', getFilters); // <-- Ruta de filtros
 // Dynamic route that accepts both ID and slug
