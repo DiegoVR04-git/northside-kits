@@ -240,10 +240,8 @@ export default function SizeRecommendation() {
               <div className="bg-white rounded-lg p-4 space-y-2 border border-emerald-200">
                 <p className="text-xs font-bold text-slate-700 uppercase">💡 Sizing Tips:</p>
                 <ul className="text-sm text-slate-700 space-y-1 list-disc list-inside">
-                  <li>Allow 2-3cm ease for comfortable fit</li>
-                  <li>These jerseys have a modern athletic fit</li>
-                  <li>Size up for a looser, relaxed fit</li>
-                  <li>Size down for a tighter, fitted look</li>
+                  <li>Size up for a looser fit</li>
+                  <li>Keep this size for a normal athletic fit</li>
                 </ul>
               </div>
             </div>
