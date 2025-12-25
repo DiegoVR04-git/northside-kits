@@ -10,6 +10,7 @@ import SizeGuideModal from '../components/SizeGuideModal'
 import ImageZoom from '../components/ImageZoom'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTransition from '../components/PageTransition'
+import SEO from '../components/SEO'
 
 function ProductPage() {
   const { id } = useParams()
@@ -87,9 +88,7 @@ function ProductPage() {
   if (!jersey) {
     return (
       <>
-        <Helmet>
-          <title>Product Not Found | NorthSide Kits</title>
-        </Helmet>
+        <SEO title="Product Not Found | NorthSide Kits" />
         <div className="min-h-screen flex items-center justify-center bg-white">
           <div className="text-center">
             <p className="text-slate-600 font-medium mb-6">Product not found</p>
@@ -102,30 +101,21 @@ function ProductPage() {
 
   return (
     <PageTransition>
+      <SEO 
+        title={`${jersey.name} - Buy in Canada | NorthSide Kits`}
+        description={`Shop ${jersey.name} at NorthSide Kits. Premium authentic football jersey, ${jersey.league}. Based in British Columbia, Canada. Free shipping over $120 CAD.`}
+        image={mainImage || jersey.images?.[0]}
+        url={`${window.location.origin}/product/${id}`}
+        type="product"
+      />
+      
       <Helmet>
-        <title>{jersey.name} - Buy in Canada | NorthSide Kits</title>
-        <meta name="description" content={`Shop ${jersey.name} at NorthSide Kits. Premium authentic football jersey, ${jersey.league}. Based in British Columbia, Canada. Free shipping over $120 CAD.`} />
-        <meta name="keywords" content={`${jersey.name}, ${jersey.team}, ${jersey.league}, football jersey, soccer kit, Canada`} />
-        
         {/* Canonical Tag - Prevent Duplicate Content (excludes query parameters) */}
         <link rel="canonical" href={`${window.location.origin}/product/${id}`} />
         
-        {/* OpenGraph Meta Tags for Social Sharing */}
-        <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${jersey.name} - Premium Football Jersey | NorthSide Kits`} />
-        <meta 
-          property="og:description" 
-          content={`${(jersey.description || `Shop ${jersey.name} - ${jersey.team} ${jersey.league}`).substring(0, 150)}...`}
-        />
-        <meta property="og:image" content={mainImage || jersey.images?.[0]} />
-        <meta property="og:url" content={`${window.location.origin}/product/${id}`} />
+        {/* Additional Meta Tags */}
+        <meta name="keywords" content={`${jersey.name}, ${jersey.team}, ${jersey.league}, football jersey, soccer kit, Canada`} />
         <meta property="og:site_name" content="NorthSide Kits" />
-
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${jersey.name} - NorthSide Kits`} />
-        <meta name="twitter:description" content={`Premium authentic ${jersey.team} jersey from NorthSide Kits. Free shipping over $120 CAD`} />
-        <meta name="twitter:image" content={mainImage || jersey.images?.[0]} />
 
         {/* JSON-LD Schema Markup for Structured Data */}
         <script type="application/ld+json">
