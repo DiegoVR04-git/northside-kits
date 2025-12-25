@@ -297,7 +297,7 @@ function Home() {
                 const isSoldOut = !jersey.sizes || jersey.sizes.length === 0;
 
                 return (
-                  <Link to={`/product/${jersey._id}`} key={jersey._id || `jersey-${index}`} className="group">
+                  <Link to={`/product/${jersey.slug || jersey._id}`} key={jersey._id || `jersey-${index}`} className="group">
                     <div className={`overflow-hidden flex flex-col h-full rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 ${isSoldOut ? 'opacity-60' : ''}`}>
                       
                       {/* IMAGE */}

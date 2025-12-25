@@ -150,7 +150,8 @@ function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductPage />} />
+          {/* Accept both slug and ID for backward compatibility */}
+          <Route path="/product/:slug" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/policy" element={<PolicyPage />} />

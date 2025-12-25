@@ -5,6 +5,13 @@ const jerseySchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
+  slug: {
+    type: String,
+    unique: true,
+    sparse: true,
+    lowercase: true,
+    trim: true
+  },
   team: { 
     type: String, 
     required: true, 
@@ -49,6 +56,30 @@ const jerseySchema = new mongoose.Schema({
   }
 }, {
   timestamps: true // Creates createdAt and updatedAt fields automatically
+});
+
+// Pre-save hook to auto-generate slug from name
+jerseySchema.pre('save', async function(next) {
+  if (!this.isModified('name')) return next();
+  
+  // Generate slug from name: "Messi 2015" -> "messi-2015"
+  let slug = this.name
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[^\w\-]/g, '') // Remove special characters
+    .replace(/\-+/g, '-'); // Replace multiple hyphens with single hyphen
+  
+  // Add team and season to make it more unique
+  if (this.team) {
+    slug = `${slug}-${this.team.toLowerCase().replace(/\s+/g, '-')}`;
+  }
+  if (this.season) {
+    slug = `${slug}-${this.season}`;
+  }
+  
+  this.slug = slug;
+  next();
 });
 
 const Jersey = mongoose.model('Jersey', jerseySchema);

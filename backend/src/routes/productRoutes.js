@@ -14,6 +14,7 @@ const {
 // Public Routes
 router.get('/', getJerseys);
 router.get('/filters', getFilters); // <-- Ruta de filtros
+// Dynamic route that accepts both ID and slug
 router.get('/:id', getJerseyById);
 
 // Protected Admin Routes (Require JWT Token)

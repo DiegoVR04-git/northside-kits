@@ -53,8 +53,24 @@ const getFilters = async (req, res) => {
 
 const getJerseyById = async (req, res) => {
   try {
-    const jersey = await Jersey.findById(req.params.id);
-    if (!jersey) return res.status(404).json({ message: 'Not found' });
+    const { id } = req.params;
+    
+    let jersey;
+    
+    // Try to find by ID first (if it looks like MongoDB ObjectId)
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      jersey = await Jersey.findById(id);
+    }
+    
+    // If not found by ID or not a valid ObjectId, try to find by slug
+    if (!jersey) {
+      jersey = await Jersey.findOne({ slug: id });
+    }
+    
+    if (!jersey) {
+      return res.status(404).json({ message: 'Not found' });
+    }
+    
     res.json(jersey);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });

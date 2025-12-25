@@ -13,7 +13,7 @@ import PageTransition from '../components/PageTransition'
 import SEO from '../components/SEO'
 
 function ProductPage() {
-  const { id } = useParams()
+  const { slug } = useParams()
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   const [jersey, setJersey] = useState(null)
@@ -28,7 +28,8 @@ function ProductPage() {
   useEffect(() => {
     const fetchJersey = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/jerseys/${id}`)
+        // Use slug or ID (for backward compatibility)
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/jerseys/${slug}`)
         setJersey(response.data)
         if(response.data && response.data.images.length > 0) {
             setMainImage(response.data.images[0])
@@ -40,14 +41,14 @@ function ProductPage() {
         
         // Filter related products: same league or same team, exclude current product
         let related = allJerseys.filter(j => 
-          j._id !== id && 
+          j._id !== response.data._id && 
           (j.league === response.data.league || j.team === response.data.team)
         )
         
         // If less than 4 matches, fill with random jerseys
         if (related.length < 4) {
           const remaining = allJerseys.filter(j => 
-            j._id !== id && !related.some(r => r._id === j._id)
+            j._id !== response.data._id && !related.some(r => r._id === j._id)
           )
           const randomJerseys = remaining.sort(() => Math.random() - 0.5)
           related = [...related, ...randomJerseys].slice(0, 4)
@@ -63,7 +64,7 @@ function ProductPage() {
       }
     }
     fetchJersey()
-  }, [id])
+  }, [slug])
 
   const handleAddToCart = () => {
     addToCart(jersey, selectedSize);
@@ -105,13 +106,13 @@ function ProductPage() {
         title={`${jersey.name} - Buy in Canada | NorthSide Kits`}
         description={`Shop ${jersey.name} at NorthSide Kits. Premium authentic football jersey, ${jersey.league}. Based in British Columbia, Canada. Free shipping over $120 CAD.`}
         image={mainImage || jersey.images?.[0]}
-        url={`${window.location.origin}/product/${id}`}
+        url={`${window.location.origin}/product/${slug}`}
         type="product"
       />
       
       <Helmet>
         {/* Canonical Tag - Prevent Duplicate Content (excludes query parameters) */}
-        <link rel="canonical" href={`${window.location.origin}/product/${id}`} />
+        <link rel="canonical" href={`${window.location.origin}/product/${slug}`} />
         
         {/* Additional Meta Tags */}
         <meta name="keywords" content={`${jersey.name}, ${jersey.team}, ${jersey.league}, football jersey, soccer kit, Canada`} />
@@ -131,7 +132,7 @@ function ProductPage() {
             },
             "offers": {
               "@type": "Offer",
-              "url": `${window.location.origin}/product/${id}`,
+              "url": `${window.location.origin}/product/${slug}`,
               "priceCurrency": "CAD",
               "price": jersey.price.toString(),
               "availability": jersey.sizes && jersey.sizes.length > 0 
@@ -175,7 +176,7 @@ function ProductPage() {
                 "@type": "ListItem",
                 "position": 3,
                 "name": jersey.name,
-                "item": `${window.location.origin}/product/${id}`
+                "item": `${window.location.origin}/product/${slug}`
               }
             ]
           })}
