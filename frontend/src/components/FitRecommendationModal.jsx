@@ -7,14 +7,14 @@ export default function FitRecommendationModal({ isOpen, onClose, availableSizes
   const [recommendedSize, setRecommendedSize] = useState(null)
   const [unit, setUnit] = useState('cm') // cm or inches
 
-  // Size chart data based on height and weight
+  // Size chart data based on height and weight (football jersey sizing)
   const sizeChart = {
-    'XS': { heightMin: 160, heightMax: 170, weightMin: 50, weightMax: 60 },
-    'S': { heightMin: 165, heightMax: 175, weightMin: 60, weightMax: 70 },
-    'M': { heightMin: 170, heightMax: 180, weightMin: 70, weightMax: 80 },
-    'L': { heightMin: 175, heightMax: 185, weightMin: 80, weightMax: 90 },
-    'XL': { heightMin: 180, heightMax: 190, weightMin: 90, weightMax: 100 },
-    'XXL': { heightMin: 185, heightMax: 200, weightMin: 100, weightMax: 120 }
+    'XS': { heightMin: 150, heightMax: 160, weightMin: 45, weightMax: 55 },
+    'S': { heightMin: 160, heightMax: 170, weightMin: 55, weightMax: 68 },
+    'M': { heightMin: 168, heightMax: 178, weightMin: 65, weightMax: 80 },
+    'L': { heightMin: 175, heightMax: 188, weightMin: 80, weightMax: 95 },
+    'XL': { heightMin: 185, heightMax: 198, weightMin: 95, weightMax: 115 },
+    'XXL': { heightMin: 195, heightMax: 210, weightMin: 110, weightMax: 135 }
   }
 
   const getRecommendation = () => {
