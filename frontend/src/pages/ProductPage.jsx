@@ -102,7 +102,7 @@ function ProductPage() {
     <PageTransition>
       <Helmet>
         <title>{jersey.name} - Buy in Canada | NorthSide Kits</title>
-        <meta name="description" content={`Shop ${jersey.name} at NorthSide Kits. Premium authentic football jersey, ${jersey.league}. Based in Langley, BC. Free shipping over $120 CAD.`} />
+        <meta name="description" content={`Shop ${jersey.name} at NorthSide Kits. Premium authentic football jersey, ${jersey.league}. Based in British Columbia, Canada. Free shipping over $120 CAD.`} />
         <meta name="keywords" content={`${jersey.name}, ${jersey.team}, ${jersey.league}, football jersey, soccer kit, Canada`} />
         
         {/* Canonical Tag - Prevent Duplicate Content (excludes query parameters) */}

@@ -94,7 +94,7 @@ function Home() {
     <PageTransition>
       <Helmet>
         <title>NorthSide Kits | Premium Soccer Jerseys in Langley & Vancouver</title>
-        <meta name="description" content="Shop authentic retro and new season football kits at NorthSide Kits. Based in Langley, BC. Shipping across Canada." />
+        <meta name="description" content="Shop authentic retro and new season football kits at NorthSide Kits. Based in British Columbia, Canada. Shipping across Canada." />
         <meta name="keywords" content="football jerseys, soccer kits, retro jerseys, football shirts, Canada, Langley" />
         <meta name="og:title" content="NorthSide Kits | Premium Football Jerseys" />
         <meta name="og:description" content="Authentic football jerseys shipped across Canada from Langley, BC." />

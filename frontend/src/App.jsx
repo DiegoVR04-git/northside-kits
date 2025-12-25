@@ -50,7 +50,7 @@ function App() {
       
       {/* TOP ANNOUNCEMENT BAR */}
       <div className="bg-black text-white text-xs sm:text-sm font-bold py-2 px-4 text-center">
-        🇨🇦 FREE SHIPPING on orders over $120 CAD | Based in Langley, BC
+        🇨🇦 FREE SHIPPING on orders over $120 CAD | Based in British Columbia, Canada
       </div>
       
       {/* PREMIUM GLASSMORPHIC NAVBAR */}
@@ -183,8 +183,8 @@ function App() {
             </div>
             <div>
               <h4 className="font-bold mb-4 uppercase tracking-wide text-xs">Location</h4>
-              <p className="text-slate-400 text-sm">Based in <span className="font-bold text-white">Langley, BC</span> 🇨🇦</p>
-              <p className="text-slate-500 text-xs mt-2">Shipping across Canada</p>
+              <p className="text-slate-400 text-sm">Based in <span className="font-bold text-white">British Columbia, Canada</span> 🇨🇦</p>
+              <p className="text-slate-500 text-xs mt-2">Local meetup available in Langley</p>
             </div>
           </div>
           <div className="border-t border-slate-700 pt-6 text-center text-slate-400 text-sm">
