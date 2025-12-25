@@ -21,6 +21,7 @@ function ProductPage() {
   const [addedToCart, setAddedToCart] = useState(false)
   const [relatedProducts, setRelatedProducts] = useState([])
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
+  const [sizingTipsOpen, setSizingTipsOpen] = useState(false)
 
   useEffect(() => {
     const fetchJersey = async () => {
@@ -264,12 +265,20 @@ function ProductPage() {
                   {jersey.sizes.length > 0 ? "Select Your Size" : "Status"}
                 </h3>
                 {jersey.sizes.length > 0 && (
-                  <button
-                    onClick={() => setSizeGuideOpen(true)}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
-                  >
-                    📏 Size Guide
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => setSizingTipsOpen(true)}
+                      className="px-4 py-2 bg-blue-100 text-blue-900 text-sm font-bold rounded-lg hover:bg-blue-200 transition-colors"
+                    >
+                      💡 Sizing Tips
+                    </button>
+                    <button
+                      onClick={() => setSizeGuideOpen(true)}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
+                    >
+                      📏 Size Guide
+                    </button>
+                  </div>
                 )}
               </div>
               
@@ -386,6 +395,39 @@ function ProductPage() {
         isOpen={sizeGuideOpen} 
         onClose={() => setSizeGuideOpen(false)}
       />
+
+      {/* SIZING TIPS MODAL */}
+      {sizingTipsOpen && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div className="p-8 space-y-4">
+              <h2 className="text-2xl font-black text-slate-900">💡 Sizing Tips</h2>
+              <div className="bg-blue-50 rounded-xl p-4 space-y-3">
+                <div className="flex gap-3">
+                  <span className="text-2xl">⬆️</span>
+                  <div>
+                    <p className="font-bold text-slate-900">Size Up</p>
+                    <p className="text-sm text-slate-700">For a looser fit</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-2xl">✓</span>
+                  <div>
+                    <p className="font-bold text-slate-900">Keep This Size</p>
+                    <p className="text-sm text-slate-700">For a normal athletic fit</p>
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={() => setSizingTipsOpen(false)}
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition-colors"
+              >
+                Got It!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* STICKY MOBILE ADD TO CART BAR */}
       {jersey && (
