@@ -7,6 +7,7 @@ import { ArrowLeft, ShoppingCart, Check, Heart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import SizeGuideModal from '../components/SizeGuideModal'
+import ImageZoom from '../components/ImageZoom'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTransition from '../components/PageTransition'
 
@@ -183,12 +184,11 @@ function ProductPage() {
           {/* GALLERY - STICKY */}
           <div className="lg:sticky lg:top-20 lg:h-fit">
             <div className="bg-slate-50 rounded-2xl overflow-hidden shadow-lg">
-              {/* Main Image */}
-              <div className="aspect-square flex items-center justify-center overflow-hidden group bg-gray-100 relative">
-                <img 
+              {/* Main Image with Zoom */}
+              <div className="aspect-square flex items-center justify-center overflow-hidden bg-gray-100 relative">
+                <ImageZoom 
                   src={mainImage} 
                   alt={`${jersey.name} - Front View - ${jersey.team} - NorthSide Kits`}
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700"
                 />
                 
                 {/* WISHLIST HEART BUTTON */}
