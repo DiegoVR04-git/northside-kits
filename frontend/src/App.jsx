@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage'
 import AdminPage from './pages/AdminPage' 
 import LoginPage from './pages/LoginPage'
 import PolicyPage from './pages/PolicyPage'
+import SecurityDepositPage from './pages/SecurityDepositPage'
 import WishlistPage from './pages/WishlistPage' // <--- IMPORTS WISHLIST PAGE
 
 // --- COMPONENTE GUARDIA DE SEGURIDAD ---
@@ -76,6 +77,9 @@ function App() {
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
                   <a href="/policy" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
                     Shipping & Returns
+                  </a>
+                  <a href="/security-deposit" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
+                    Deposit Policy
                   </a>
                 </div>
               </div>
@@ -150,6 +154,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/policy" element={<PolicyPage />} />
+          <Route path="/security-deposit" element={<SecurityDepositPage />} />
           
           {/* PUBLIC LOGIN ROUTE */}
           <Route path="/login" element={<LoginPage />} />
@@ -179,6 +184,7 @@ function App() {
               <ul className="text-slate-400 text-sm space-y-2">
                 <li><a href="/" className="hover:text-white transition-colors">Shop</a></li>
                 <li><a href="/policy" className="hover:text-white transition-colors">Shipping & Returns</a></li>
+                <li><a href="/security-deposit" className="hover:text-white transition-colors">Deposit Policy</a></li>
               </ul>
             </div>
             <div>
