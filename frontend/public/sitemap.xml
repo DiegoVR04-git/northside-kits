@@ -1,47 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Main Pages -->
-  <url>
-    <loc>https://northsidekits.ca/</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+<!--
+  DEPRECATED: This file is no longer used.
+  The sitemap is now dynamically generated from the backend.
   
-  <url>
-    <loc>https://northsidekits.ca/login</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://northsidekits.ca/cart</loc>
-    <changefreq>never</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://northsidekits.ca/wishlist</loc>
-    <changefreq>never</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://northsidekits.ca/policy</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
-    <loc>https://northsidekits.ca/security-deposit</loc>
-    <lastmod>2025-12-25</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Note: Product pages should be dynamically generated based on your database -->
-  <!-- You can generate this section dynamically using a Node.js script or API -->
+  Live Sitemap URL: https://northsidekits.ca/sitemap.xml
+  
+  The backend generates a complete sitemap including:
+  - All static pages (home, login, cart, wishlist, policy, security-deposit)
+  - All product pages dynamically from the MongoDB database
+  
+  Update frequency: Cached for 24 hours
+  Cache-Control: public, max-age=86400
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Redirect to dynamic sitemap at https://northsidekits.ca/sitemap.xml -->
 </urlset>
