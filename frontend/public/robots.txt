@@ -1,8 +1,26 @@
 User-agent: *
 Allow: /
+Allow: /product/*
 Disallow: /admin
+Disallow: /api/*
 Disallow: /cart
 Disallow: /checkout
+Disallow: /wishlist
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# YandexBot
+User-agent: YandexBot
+Allow: /
 
 Sitemap: https://northsidekits.ca/sitemap.xml
 Host: https://northsidekits.ca
+Crawl-delay: 1

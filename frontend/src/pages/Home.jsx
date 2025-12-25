@@ -9,6 +9,7 @@ import LiveReviews from '../components/LiveReviews'
 import PageTransition from '../components/PageTransition'
 import { useWishlist } from '../context/WishlistContext'
 import SoccerLoader from '../components/SoccerLoader'
+import SEO from '../components/SEO'
 
 function Home() {
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
@@ -92,14 +93,36 @@ function Home() {
 
   return (
     <PageTransition>
+      <SEO 
+        title="NorthSide Kits | Premium Soccer Jerseys in Langley & Vancouver 🇨🇦"
+        description="Shop authentic retro and new season football kits at NorthSide Kits. Based in British Columbia, Canada. Free shipping over $120 CAD. Player and fan versions available."
+        url="https://northsidekits.ca"
+        type="website"
+      />
+      
       <Helmet>
-        <title>NorthSide Kits | Premium Soccer Jerseys in Langley & Vancouver</title>
-        <meta name="description" content="Shop authentic retro and new season football kits at NorthSide Kits. Based in British Columbia, Canada. Shipping across Canada." />
-        <meta name="keywords" content="football jerseys, soccer kits, retro jerseys, football shirts, Canada, Langley" />
-        <meta name="og:title" content="NorthSide Kits | Premium Football Jerseys" />
-        <meta name="og:description" content="Authentic football jerseys shipped across Canada from Langley, BC." />
-        {/* Canonical Tag - Prevent Duplicate Content */}
-        <link rel="canonical" href={window.location.origin} />
+        <meta name="keywords" content="football jerseys, soccer kits, retro jerseys, football shirts, Canada, Langley, Vancouver, jersey shop" />
+        <link rel="canonical" href="https://northsidekits.ca" />
+        
+        {/* JSON-LD Organization Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "LocalBusiness",
+            "name": "NorthSide Kits",
+            "image": "https://res.cloudinary.com/your-cloudinary/image/upload/v1/northside-kits-logo.png",
+            "description": "Premier football jersey shop in British Columbia, Canada. Authentic retro and current season jerseys.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "CA",
+              "addressRegion": "BC"
+            },
+            "url": "https://northsidekits.ca",
+            "telephone": "+1-604-xxx-xxxx",
+            "priceRange": "CAD 50 - CAD 200",
+            "areaServed": "CA"
+          })}
+        </script>
       </Helmet>
       <div className="bg-white">
       {/* PREMIUM HERO SECTION */}

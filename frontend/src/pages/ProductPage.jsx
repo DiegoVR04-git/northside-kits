@@ -152,6 +152,34 @@ function ProductPage() {
             }
           })}
         </script>
+
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": `${window.location.origin}`
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": jersey.league,
+                "item": `${window.location.origin}`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": jersey.name,
+                "item": `${window.location.origin}/product/${id}`
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
