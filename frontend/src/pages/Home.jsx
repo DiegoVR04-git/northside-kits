@@ -417,6 +417,26 @@ function Home() {
       <FAQ />
 
       {/* REQUEST A KIT BANNER - CUSTOM SOURCING */}
+      {/* Local SEO Section */}
+      <section className="w-full bg-slate-50 py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-slate-900" style={{ fontFamily: 'Poppins' }}>
+            Serving BC & Western Canada
+          </h2>
+          <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Inter' }}>
+            NorthSide Kits delivers premium soccer jerseys to Surrey, Vancouver, Langley, Burnaby, and across British Columbia with fast shipping and no customs fees.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {['Surrey', 'Vancouver', 'Langley', 'Burnaby', 'Coquitlam', 'Maple Ridge', 'Delta', 'Abbotsford'].map((city) => (
+              <div key={city} className="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-shadow">
+                <p className="font-semibold text-slate-700">{city}</p>
+                <p className="text-sm text-slate-500">BC</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="w-full bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight" style={{ fontFamily: 'Poppins' }}>
