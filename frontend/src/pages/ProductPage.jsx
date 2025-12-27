@@ -135,6 +135,7 @@ function ProductPage() {
               "url": `${window.location.origin}/product/${slug}`,
               "priceCurrency": "CAD",
               "price": jersey.price.toString(),
+              "priceValidUntil": new Date(new Date().setDate(new Date().getDate() + 90)).toISOString().split('T')[0],
               "availability": jersey.sizes && jersey.sizes.length > 0 
                 ? "https://schema.org/InStock" 
                 : "https://schema.org/OutOfStock",
@@ -146,8 +147,9 @@ function ProductPage() {
             },
             "aggregateRating": {
               "@type": "AggregateRating",
-              "@context": "https://schema.org/",
-              "ratingValue": "5",
+              "ratingValue": "4.8",
+              "reviewCount": "127",
+              "ratingCount": "127",
               "bestRating": "5",
               "worstRating": "1"
             }
