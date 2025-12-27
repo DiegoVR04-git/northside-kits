@@ -185,7 +185,7 @@ function ProductPage() {
       <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
       <div className="border-b border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-6">
           <Breadcrumbs 
             paths={[
               { name: 'Home', url: '/' },
@@ -197,12 +197,12 @@ function ProductPage() {
       </div>
 
       {/* PRODUCT SHOWCASE */}
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+      <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16">
           
           {/* GALLERY - STICKY */}
           <div className="lg:sticky lg:top-20 lg:h-fit">
-            <div className="bg-slate-50 rounded-2xl overflow-hidden shadow-lg">
+            <div className="bg-slate-50 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
               {/* Main Image with Zoom */}
               <div className="aspect-square flex items-center justify-center overflow-hidden bg-gray-100 relative">
                 <ImageZoom 
@@ -222,11 +222,11 @@ function ProductPage() {
                       toast.success('Added to Wishlist');
                     }
                   }}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/90 hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 z-20"
+                  className="absolute top-3 sm:top-4 right-3 sm:right-4 p-2 rounded-full bg-white/90 hover:bg-white shadow-md hover:shadow-lg transition-all duration-300 z-20"
                 >
                   <Heart 
-                    size={24} 
-                    className={`transition-colors duration-300 ${
+                    size={22} 
+                    className={`sm:w-6 sm:h-6 transition-colors duration-300 ${
                       isInWishlist(jersey._id) 
                         ? 'fill-red-600 text-red-600' 
                         : 'text-gray-400 hover:text-red-600'
@@ -237,12 +237,12 @@ function ProductPage() {
 
               {/* Thumbnails */}
               {jersey.images && jersey.images.length > 1 && (
-                <div className="p-4 border-t border-gray-100 flex gap-3 overflow-x-auto">
+                <div className="p-3 sm:p-4 border-t border-gray-100 flex gap-2 sm:gap-3 overflow-x-auto">
                   {jersey.images.map((img, idx) => (
                     <button
                       key={idx}
                       onClick={() => setMainImage(img)}
-                      className={`w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
+                      className={`w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex-shrink-0 border-2 transition-all ${
                         mainImage === img ? 'border-slate-900 scale-105' : 'border-gray-200'
                       }`}
                     >
@@ -255,45 +255,45 @@ function ProductPage() {
           </div>
 
           {/* PRODUCT DETAILS */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             
             {/* BADGES */}
             <div className="flex flex-wrap gap-2">
-              <span className="bg-slate-900 text-white px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">{jersey.season}</span>
-              <span className="bg-gray-200 text-gray-900 px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md capitalize">{jersey.type}</span>
-              {jersey.isRetro && <span className="bg-slate-900 text-white px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">Retro</span>}
-              <span className="bg-gray-200 text-gray-900 px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">{jersey.league}</span>
+              <span className="bg-slate-900 text-white px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">{jersey.season}</span>
+              <span className="bg-gray-200 text-gray-900 px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-bold uppercase tracking-wider rounded-md capitalize">{jersey.type}</span>
+              {jersey.isRetro && <span className="bg-slate-900 text-white px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">Retro</span>}
+              <span className="bg-gray-200 text-gray-900 px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs font-bold uppercase tracking-wider rounded-md">{jersey.league}</span>
             </div>
 
             {/* TITLE & META */}
             <div>
-              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">{jersey.team}</p>
-              <h1 className="text-4xl sm:text-5xl font-black text-slate-900 mb-6 leading-tight">{jersey.name}</h1>
-              <p className="text-4xl sm:text-5xl font-black text-slate-900">${jersey.price}</p>
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1 sm:mb-2">{jersey.team}</p>
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 sm:mb-6 leading-tight">{jersey.name}</h1>
+              <p className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900">${jersey.price}</p>
             </div>
 
             {/* DESCRIPTION */}
-            <p className="text-base text-gray-700 leading-relaxed border-l-4 border-slate-900 pl-6">
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed border-l-4 border-slate-900 pl-4 sm:pl-6">
               {jersey.description || "Premium quality authentic football jersey from our curated collection."}
             </p>
 
             {/* SIZE SELECTOR */}
             <div>
-              <div className="flex items-center justify-between gap-4 mb-4">
-                <h3 className="text-lg font-bold text-slate-900">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900">
                   {jersey.sizes.length > 0 ? "Select Your Size" : "Status"}
                 </h3>
                 {jersey.sizes.length > 0 && (
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
                     <button
                       onClick={() => setSizingTipsOpen(true)}
-                      className="px-4 py-2 bg-blue-100 text-blue-900 text-sm font-bold rounded-lg hover:bg-blue-200 transition-colors"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-blue-100 text-blue-900 text-xs sm:text-sm font-bold rounded-lg hover:bg-blue-200 transition-colors"
                     >
                       💡 Sizing Tips
                     </button>
                     <button
                       onClick={() => setSizeGuideOpen(true)}
-                      className="px-4 py-2 bg-gray-100 text-gray-700 text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 text-xs sm:text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors"
                     >
                       📏 Size Guide
                     </button>
@@ -302,12 +302,12 @@ function ProductPage() {
               </div>
               
               {jersey.sizes.length > 0 ? (
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {jersey.sizes.map(size => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`w-16 h-16 rounded-lg font-bold text-lg transition-all duration-300 border-2 ${
+                      className={`w-12 h-12 sm:w-16 sm:h-16 rounded-lg font-bold text-sm sm:text-lg transition-all duration-300 border-2 ${
                         selectedSize === size 
                           ? 'bg-slate-900 text-white border-slate-900 shadow-md' 
                           : 'bg-white border-gray-300 text-gray-700 hover:border-slate-900 hover:text-slate-900'
@@ -318,9 +318,9 @@ function ProductPage() {
                   ))}
                 </div>
               ) : (
-                <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-6 text-center">
-                  <p className="text-gray-700 font-bold text-lg">🚫 Out of Stock</p>
-                  <p className="text-gray-600 text-sm mt-1">This item is currently unavailable</p>
+                <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-4 sm:p-6 text-center">
+                  <p className="text-gray-700 font-bold text-base sm:text-lg">🚫 Out of Stock</p>
+                  <p className="text-gray-600 text-xs sm:text-sm mt-1">This item is currently unavailable</p>
                 </div>
               )}
             </div>
@@ -329,25 +329,25 @@ function ProductPage() {
             <button 
               disabled={!selectedSize || jersey.sizes.length === 0}
               onClick={handleAddToCart}
-              className={`w-full py-4 px-6 rounded-lg font-bold text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 ${
+              className={`w-full py-3 sm:py-4 px-6 rounded-lg font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 ${
                 selectedSize && jersey.sizes.length > 0
                   ? 'bg-slate-900 text-white shadow-md hover:shadow-lg' 
                   : 'bg-gray-100 text-gray-500 cursor-not-allowed'
               }`}
             >
               {addedToCart ? (
-                <><Check size={24} className="text-green-400" /> Added to Cart!</>
+                <><Check size={20} className="sm:w-6 sm:h-6 text-green-400" /> Added to Cart!</>
               ) : jersey.sizes.length === 0 ? (
                 'Out of Stock'
               ) : !selectedSize ? (
                 'Select a Size'
               ) : (
-                <><ShoppingCart size={24} /> Add to Cart</>
+                <><ShoppingCart size={20} className="sm:w-6 sm:h-6" /> Add to Cart</>
               )}
             </button>
 
             {/* TRUST BADGES */}
-            <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg sm:rounded-xl p-3 sm:p-4 flex items-start gap-3">
               <Check size={20} className="text-emerald-600 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-bold text-emerald-900">Authentic & Verified</p>

@@ -151,22 +151,22 @@ function Home() {
 
       {/* FILTERS & SEARCH */}
       <section className="sticky top-16 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+        <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-6">
           {/* Search Bar */}
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             <input
               type="text"
-              placeholder="Search by name, team, league..."
+              placeholder="Search jerseys..."
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
-              className="input-premium"
+              className="input-premium text-base sm:text-sm py-3 sm:py-3"
             />
           </div>
 
           {/* Filter Toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-all duration-300 font-medium text-sm"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all duration-300 font-medium text-sm sm:text-sm"
           >
             <ChevronRight size={18} className={`transition-transform duration-300 ${showFilters ? 'rotate-90' : ''}`} />
             Filters
@@ -174,17 +174,17 @@ function Home() {
 
           {/* Filters Panel */}
           {showFilters && (
-            <div className="mt-4 p-6 bg-slate-50 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="mt-4 p-4 sm:p-6 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {/* Team */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2.5 uppercase tracking-wide">Team</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Team</label>
                 <select
                   value={filters.team}
                   onChange={(e) => handleFilterChange('team', e.target.value)}
-                  className="input-premium text-sm"
+                  className="input-premium text-sm py-2.5"
                 >
                   <option value="">All Teams</option>
-                  {availableFilters.teams.map((team) => (
+                  {availableFilters.teams && availableFilters.teams.length > 0 && availableFilters.teams.map((team) => (
                     <option key={team} value={team}>{team}</option>
                   ))}
                 </select>
@@ -192,14 +192,14 @@ function Home() {
 
               {/* Type */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2.5 uppercase tracking-wide">Type</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Type</label>
                 <select
                   value={filters.type}
                   onChange={(e) => handleFilterChange('type', e.target.value)}
-                  className="input-premium text-sm"
+                  className="input-premium text-sm py-2.5"
                 >
                   <option value="">All Types</option>
-                  {availableFilters.types.map((type) => (
+                  {availableFilters.types && availableFilters.types.length > 0 && availableFilters.types.map((type) => (
                     <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
                   ))}
                 </select>
@@ -207,14 +207,14 @@ function Home() {
 
               {/* League */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2.5 uppercase tracking-wide">League</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">League</label>
                 <select
                   value={filters.league}
                   onChange={(e) => handleFilterChange('league', e.target.value)}
-                  className="input-premium text-sm"
+                  className="input-premium text-sm py-2.5"
                 >
                   <option value="">All Leagues</option>
-                  {availableFilters.leagues.map((league) => (
+                  {availableFilters.leagues && availableFilters.leagues.length > 0 && availableFilters.leagues.map((league) => (
                     <option key={league} value={league}>{league}</option>
                   ))}
                 </select>
@@ -222,25 +222,25 @@ function Home() {
 
               {/* Min Price */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2.5 uppercase tracking-wide">Min Price</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Min Price</label>
                 <input
                   type="number"
                   placeholder="0"
                   value={filters.minPrice}
                   onChange={(e) => handleFilterChange('minPrice', e.target.value)}
-                  className="input-premium text-sm"
+                  className="input-premium text-sm py-2.5"
                 />
               </div>
 
               {/* Max Price */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2.5 uppercase tracking-wide">Max Price</label>
+                <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Max Price</label>
                 <input
                   type="number"
                   placeholder="999"
                   value={filters.maxPrice}
                   onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
-                  className="input-premium text-sm"
+                  className="input-premium text-sm py-2.5"
                 />
               </div>
 
@@ -249,7 +249,7 @@ function Home() {
                 <div className="sm:col-span-2 lg:col-span-5">
                   <button
                     onClick={resetFilters}
-                    className="w-full px-4 py-2.5 bg-red-100 text-red-700 rounded-xl hover:bg-red-200 transition-colors font-bold text-sm"
+                    className="w-full px-4 py-2.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-bold text-sm"
                   >
                     Clear Filters
                   </button>
@@ -261,12 +261,12 @@ function Home() {
       </section>
 
       {/* PRODUCTS GRID */}
-      <section id="products" className="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <section id="products" className="container mx-auto px-3 sm:px-6 py-12 sm:py-20">
         {isLoading ? (
           <SoccerLoader />
         ) : loading ? (
           <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
               {[...Array(8)].map((_, index) => (
                 <SkeletonCard key={`skeleton-${index}`} />
               ))}
@@ -284,11 +284,11 @@ function Home() {
           </div>
         ) : (
           <div>
-            <p className="text-slate-600 mb-8 font-medium">
+            <p className="text-slate-600 mb-6 sm:mb-8 font-medium text-sm sm:text-base">
               Showing <span className="font-bold text-slate-900">{jerseys.length}</span> jersey{jerseys.length !== 1 ? 's' : ''}
             </p>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-8">
               {[...jerseys].slice(0, displayLimit).sort((a, b) => {
                 const aSoldOut = !a.sizes || a.sizes.length === 0;
                 const bSoldOut = !b.sizes || b.sizes.length === 0;
@@ -301,7 +301,7 @@ function Home() {
                     <div className={`overflow-hidden flex flex-col h-full rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300 ${isSoldOut ? 'opacity-60' : ''}`}>
                       
                       {/* IMAGE */}
-                      <div className="h-80 sm:h-96 bg-gray-100 overflow-hidden flex items-center justify-center p-6 relative">
+                      <div className="h-48 sm:h-80 bg-gray-100 overflow-hidden flex items-center justify-center p-3 sm:p-6 relative">
                         {jersey.images && jersey.images.length > 0 ? (
                           <img 
                             src={jersey.images[0]} 
@@ -310,12 +310,12 @@ function Home() {
                           />
                         ) : (
                           <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
-                            <span className="text-sm">No Image</span>
+                            <span className="text-xs sm:text-sm">No Image</span>
                           </div>
                         )}
                         
                         {jersey.isRetro && !isSoldOut && (
-                          <span className="absolute top-4 left-4 bg-slate-900 text-white px-2.5 py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg">Retro</span>
+                          <span className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-slate-900 text-white px-2 py-1 sm:px-2.5 sm:py-1.5 text-xs font-bold uppercase tracking-wider shadow-lg">Retro</span>
                         )}
 
                         {/* WISHLIST HEART BUTTON */}
@@ -331,11 +331,11 @@ function Home() {
                               toast.success('Added to Wishlist');
                             }
                           }}
-                          className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/90 hover:bg-white shadow-md hover:shadow-lg transition-all duration-300"
+                          className="absolute top-2 right-2 sm:top-4 sm:right-4 z-20 p-2 rounded-full bg-white/90 hover:bg-white shadow-md hover:shadow-lg transition-all duration-300"
                         >
                           <Heart 
-                            size={20} 
-                            className={`transition-colors duration-300 ${
+                            size={18} 
+                            className={`sm:w-5 sm:h-5 transition-colors duration-300 ${
                               isInWishlist(jersey._id) 
                                 ? 'fill-red-600 text-red-600' 
                                 : 'text-gray-400 hover:text-red-600'
@@ -345,7 +345,7 @@ function Home() {
 
                         {isSoldOut && (
                           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-10">
-                            <span className="bg-slate-900 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-2xl transform -rotate-3">
+                            <span className="bg-slate-900 text-white px-3 py-1.5 sm:px-4 sm:py-2 text-xs font-bold uppercase tracking-wider shadow-2xl transform -rotate-3">
                               SOLD OUT
                             </span>
                           </div>
@@ -353,22 +353,22 @@ function Home() {
                       </div>
 
                       {/* CONTENT */}
-                      <div className="p-6 flex-grow flex flex-col justify-between bg-white">
+                      <div className="p-3 sm:p-6 flex-grow flex flex-col justify-between bg-white">
                         <div>
-                          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">{jersey.team}</p>
-                          <h3 className="font-bold text-gray-900 text-lg group-hover:text-slate-700 transition-colors line-clamp-2 mb-2">
+                          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1 sm:mb-2">{jersey.team}</p>
+                          <h3 className="font-bold text-gray-900 text-sm sm:text-lg group-hover:text-slate-700 transition-colors line-clamp-2 mb-2">
                             {jersey.name}
                           </h3>
                         </div>
                         
-                        <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <div className="flex justify-between items-center pt-3 sm:pt-4 border-t border-gray-100 gap-2">
                           {isSoldOut ? (
-                            <span className="text-slate-500 font-bold text-sm">Out of Stock</span>
+                            <span className="text-slate-500 font-bold text-xs sm:text-sm">Out of Stock</span>
                           ) : (
-                            <span className="text-2xl font-black text-slate-900">${jersey.price}</span>
+                            <span className="text-xl sm:text-2xl font-black text-slate-900">${jersey.price}</span>
                           )}
                           
-                          <button className={`px-3 py-2 rounded-lg text-xs font-bold transition-all duration-300 hover:-translate-y-1 ${
+                          <button className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition-all duration-300 hover:-translate-y-1 flex-shrink-0 ${
                             isSoldOut 
                               ? 'bg-gray-100 text-gray-500' 
                               : 'bg-slate-900 text-white group-hover:shadow-lg'
@@ -385,11 +385,11 @@ function Home() {
 
             {/* Show More/Show Less Buttons */}
             {(displayLimit < jerseys.length || displayLimit > 28) && (
-              <div className="flex justify-center gap-4 mt-12">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-10 sm:mt-12">
                 {displayLimit < jerseys.length && (
                   <button
                     onClick={() => setDisplayLimit(displayLimit + 28)}
-                    className="px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg"
+                    className="px-6 sm:px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
                     style={{ fontFamily: 'Inter' }}
                   >
                     Load More Jerseys
@@ -398,7 +398,7 @@ function Home() {
                 {displayLimit > 28 && (
                   <button
                     onClick={() => setDisplayLimit(28)}
-                    className="px-8 py-3 bg-gray-600 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg"
+                    className="px-6 sm:px-8 py-3 bg-gray-600 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
                     style={{ fontFamily: 'Inter' }}
                   >
                     Show Less
@@ -418,38 +418,38 @@ function Home() {
 
       {/* REQUEST A KIT BANNER - CUSTOM SOURCING */}
       {/* Local SEO Section */}
-      <section className="w-full bg-slate-50 py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4 text-slate-900" style={{ fontFamily: 'Poppins' }}>
+      <section className="w-full bg-slate-50 py-12 sm:py-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-3 sm:mb-4 text-slate-900" style={{ fontFamily: 'Poppins' }}>
             Serving BC & Western Canada
           </h2>
-          <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto" style={{ fontFamily: 'Inter' }}>
+          <p className="text-center text-slate-600 mb-8 sm:mb-12 max-w-2xl mx-auto text-sm sm:text-base" style={{ fontFamily: 'Inter' }}>
             NorthSide Kits delivers premium soccer jerseys to Surrey, Vancouver, Langley, Burnaby, and across British Columbia with fast shipping and no customs fees.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
             {['Surrey', 'Vancouver', 'Langley', 'Burnaby', 'Coquitlam', 'Maple Ridge', 'Delta', 'Abbotsford'].map((city) => (
-              <div key={city} className="bg-white p-4 rounded-lg shadow text-center hover:shadow-md transition-shadow">
-                <p className="font-semibold text-slate-700">{city}</p>
-                <p className="text-sm text-slate-500">BC</p>
+              <div key={city} className="bg-white p-3 sm:p-4 rounded-lg shadow text-center hover:shadow-md transition-shadow">
+                <p className="font-semibold text-slate-700 text-sm sm:text-base">{city}</p>
+                <p className="text-xs sm:text-sm text-slate-500">BC</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="w-full bg-gradient-to-r from-slate-900 to-blue-900 text-white py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight" style={{ fontFamily: 'Poppins' }}>
+      <section className="w-full bg-gradient-to-r from-slate-900 to-blue-900 text-white py-12 sm:py-20">
+        <div className="max-w-4xl mx-auto px-3 sm:px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl lg:text-5xl font-black mb-4 leading-tight" style={{ fontFamily: 'Poppins' }}>
             Don't see what you're looking for?
           </h2>
-          <p className="text-lg sm:text-xl text-gray-100 mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Inter' }}>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-100 mb-6 sm:mb-8 max-w-2xl mx-auto" style={{ fontFamily: 'Inter' }}>
             We can source almost any jersey for you. Retro classics, specific players, or rare finds. Just send us a message!
           </p>
           <a
             href="https://wa.me/525626340102?text=Hi%20NorthSide%20Kits,%20I%20am%20looking%20for%20a%20specific%20jersey..."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold text-lg rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-md"
+            className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white font-bold text-base sm:text-lg rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-md"
             style={{ fontFamily: 'Inter' }}
           >
             📲 Chat with us on WhatsApp

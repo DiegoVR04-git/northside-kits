@@ -47,12 +47,12 @@ function CartPage() {
           <title>Shopping Cart | NorthSide Kits</title>
           <meta name="description" content="Review your order and proceed to checkout at NorthSide Kits." />
         </Helmet>
-        <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
-        <div className="mb-8 p-8 bg-slate-100 rounded-full">
-          <ShoppingBag size={80} className="text-slate-600" />
+        <div className="min-h-screen bg-white flex flex-col items-center justify-center px-3 sm:px-4 py-12">
+        <div className="mb-6 sm:mb-8 p-6 sm:p-8 bg-slate-100 rounded-full">
+          <ShoppingBag size={60} className="sm:w-20 sm:h-20 text-slate-600" />
         </div>
-        <h2 className="text-4xl sm:text-5xl font-black text-slate-900 mb-4">Your cart is empty</h2>
-        <p className="text-slate-600 mb-10 max-w-sm text-lg leading-relaxed">Discover our premium collection of authentic jerseys and find your next favorite piece.</p>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 sm:mb-4 text-center">Your cart is empty</h2>
+        <p className="text-slate-600 mb-8 sm:mb-10 max-w-sm text-base sm:text-lg leading-relaxed text-center">Discover our premium collection of authentic jerseys and find your next favorite piece.</p>
         <Link to="/" className="btn-primary inline-flex items-center gap-2">
           Start Shopping
           <ArrowRight size={20} />
@@ -69,27 +69,27 @@ function CartPage() {
         <meta name="description" content="Review and proceed to checkout. Free shipping on orders over $120 CAD across Canada." />
       </Helmet>
       <div className="min-h-screen bg-white py-8 sm:py-12">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+      <div className="container mx-auto px-3 sm:px-6 max-w-7xl">
         
         {/* HEADER */}
-        <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-black text-slate-900 mb-2">Order Review</h1>
-          <p className="text-slate-600 font-medium">{cart.length} {cart.length === 1 ? 'item' : 'items'} in your cart</p>
+        <div className="mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2">Order Review</h1>
+          <p className="text-slate-600 font-medium text-sm sm:text-base">{cart.length} {cart.length === 1 ? 'item' : 'items'} in your cart</p>
         </div>
 
         {/* TWO COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           
           {/* ITEMS LIST - LEFT SIDE */}
           <div className="lg:col-span-2">
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {cart.map((item, index) => (
                 <div 
                   key={item.cartId}
-                  className="card group border border-slate-200 rounded-2xl p-6 flex gap-6 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+                  className="card group border border-slate-200 rounded-lg sm:rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row gap-4 sm:gap-6 hover:shadow-lg hover:border-slate-300 transition-all duration-300"
                 >
                   {/* Product Image */}
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 bg-slate-50 rounded-xl flex items-center justify-center overflow-hidden">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0 bg-slate-50 rounded-lg sm:rounded-xl flex items-center justify-center overflow-hidden">
                     <img 
                       src={item.images[0]} 
                       alt={item.name}
@@ -99,18 +99,18 @@ function CartPage() {
 
                   {/* PRODUCT INFO */}
                   <div className="flex-grow min-w-0">
-                    <div className="mb-3">
-                      <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">{item.team}</p>
-                      <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{item.name}</h3>
+                    <div className="mb-2 sm:mb-3">
+                      <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-0.5 sm:mb-1">{item.team}</p>
+                      <h3 className="text-base sm:text-xl md:text-2xl font-black text-slate-900 leading-tight">{item.name}</h3>
                     </div>
                     
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="badge bg-blue-100 text-blue-800">Size: {item.size}</span>
+                    <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                      <span className="badge bg-blue-100 text-blue-800 text-xs sm:text-sm">Size: {item.size}</span>
                     </div>
 
                     <button 
                       onClick={() => removeFromCart(item.cartId)}
-                      className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-bold text-sm transition-colors group/btn"
+                      className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-bold text-xs sm:text-sm transition-colors group/btn"
                     >
                       <Trash2 size={16} className="group-hover/btn:scale-110 transition-transform" />
                       Remove
@@ -118,8 +118,8 @@ function CartPage() {
                   </div>
 
                   {/* PRICE */}
-                  <div className="text-right">
-                    <p className="text-3xl sm:text-4xl font-black gradient-text">${item.price}</p>
+                  <div className="text-right flex-shrink-0">
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-black gradient-text">${item.price}</p>
                   </div>
                 </div>
               ))}
@@ -128,18 +128,18 @@ function CartPage() {
 
           {/* ORDER SUMMARY - RIGHT SIDE */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 card bg-slate-50 border-2 border-slate-200 rounded-2xl p-8">
+            <div className="sticky top-24 card bg-slate-50 border-2 border-slate-200 rounded-lg sm:rounded-2xl p-6 sm:p-8">
               
               {/* TITLE */}
-              <h2 className="text-2xl font-black text-slate-900 mb-8 pb-6 border-b-2 border-slate-200">
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-6 sm:mb-8 pb-4 sm:pb-6 border-b-2 border-slate-200">
                 Order Summary
               </h2>
 
               {/* DELIVERY METHOD SELECTOR */}
-              <div className="mb-8 pb-8 border-b-2 border-slate-200">
-                <p className="text-sm font-bold text-slate-700 mb-4 uppercase tracking-wide">Delivery Method</p>
-                <div className="space-y-3">
-                  <label className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+              <div className="mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-slate-200">
+                <p className="text-xs sm:text-sm font-bold text-slate-700 mb-3 sm:mb-4 uppercase tracking-wide">Delivery Method</p>
+                <div className="space-y-2 sm:space-y-3">
+                  <label className={`flex items-start sm:items-center gap-3 p-3 sm:p-4 rounded-lg border-2 cursor-pointer transition-all ${
                     deliveryMethod === 'shipping' 
                       ? 'bg-blue-50 border-blue-900' 
                       : 'bg-slate-50 border-slate-300 hover:border-blue-900'
@@ -150,16 +150,16 @@ function CartPage() {
                       value="shipping"
                       checked={deliveryMethod === 'shipping'}
                       onChange={(e) => setDeliveryMethod(e.target.value)}
-                      className="w-4 h-4 accent-blue-900 cursor-pointer"
+                      className="w-4 h-4 accent-blue-900 cursor-pointer mt-1 sm:mt-0 flex-shrink-0"
                     />
                     <div className="flex-grow">
-                      <p className="font-bold text-slate-900">Ship to Me</p>
+                      <p className="font-bold text-slate-900 text-sm sm:text-base">Ship to Me</p>
                       <p className="text-xs text-slate-600">Across Canada</p>
                     </div>
-                    <Truck className="w-5 h-5 text-slate-600" />
+                    <Truck className="w-5 h-5 text-slate-600 flex-shrink-0" />
                   </label>
                   
-                  <label className={`flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                  <label className={`flex items-start sm:items-center gap-3 p-3 sm:p-4 rounded-lg border-2 cursor-pointer transition-all ${
                     deliveryMethod === 'pickup' 
                       ? 'bg-emerald-50 border-emerald-600' 
                       : 'bg-slate-50 border-slate-300 hover:border-emerald-600'
@@ -170,45 +170,45 @@ function CartPage() {
                       value="pickup"
                       checked={deliveryMethod === 'pickup'}
                       onChange={(e) => setDeliveryMethod(e.target.value)}
-                      className="w-4 h-4 accent-emerald-600 cursor-pointer"
+                      className="w-4 h-4 accent-emerald-600 cursor-pointer mt-1 sm:mt-0 flex-shrink-0"
                     />
                     <div className="flex-grow">
-                      <p className="font-bold text-slate-900">Pickup/Meetup</p>
+                      <p className="font-bold text-slate-900 text-sm sm:text-base">Pickup/Meetup</p>
                       <p className="text-xs text-slate-600">Langley, BC • Save on Shipping</p>
                     </div>
-                    <MapPin className="w-5 h-5 text-emerald-600" />
+                    <MapPin className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                   </label>
                 </div>
               </div>
 
               {/* PRICING */}
-              <div className="space-y-4 mb-8 pb-8 border-b-2 border-slate-200">
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-slate-200">
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-700 font-medium">Subtotal</span>
-                  <span className="font-bold text-slate-900 text-lg">${subtotal.toFixed(2)}</span>
+                  <span className="text-slate-700 font-medium text-sm sm:text-base">Subtotal</span>
+                  <span className="font-bold text-slate-900 text-base sm:text-lg">${subtotal.toFixed(2)}</span>
                 </div>
                 {deliveryMethod === 'shipping' && (
                   <>
                     <div className="flex justify-between items-center">
-                      <span className="text-slate-700 font-medium flex items-center gap-2">
+                      <span className="text-slate-700 font-medium flex items-center gap-2 text-sm sm:text-base">
                         <Truck size={18} className="text-blue-600" />
                         Shipping (Flat Rate)
                       </span>
-                      <span className={`font-black text-lg ${
+                      <span className={`font-black text-base sm:text-lg ${
                         shippingCost === 0 ? 'text-emerald-600' : 'text-slate-900'
                       }`}>
                         ${shippingCost.toFixed(2)}
                       </span>
                     </div>
                     {shippingCost > 0 && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-900 font-medium">
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm text-blue-900 font-medium">
                         ✨ Add ${amountForFreeShipping} more for Free Shipping!
                       </div>
                     )}
                   </>
                 )}
                 {deliveryMethod === 'pickup' && (
-                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-3 text-sm text-emerald-900 font-medium flex items-center gap-2">
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-2.5 sm:p-3 text-xs sm:text-sm text-emerald-900 font-medium flex items-center gap-2">
                     <MapPin size={16} />
                     Free local pickup in Langley
                   </div>
@@ -216,10 +216,10 @@ function CartPage() {
               </div>
 
               {/* TOTAL */}
-              <div className="mb-10">
+              <div className="mb-8 sm:mb-10">
                 <div className="flex justify-between items-baseline mb-2">
-                  <span className="text-lg font-bold text-slate-900">Total</span>
-                  <span className="text-4xl sm:text-5xl font-black gradient-text">
+                  <span className="text-base sm:text-lg font-bold text-slate-900">Total</span>
+                  <span className="text-2xl sm:text-4xl md:text-5xl font-black gradient-text">
                     ${totalWithDelivery.toFixed(2)}
                   </span>
                 </div>
@@ -227,44 +227,44 @@ function CartPage() {
               </div>
 
               {/* PAYMENT BUTTONS */}
-              <div className="space-y-3 mb-8">
+              <div className="space-y-2.5 sm:space-y-3 mb-6 sm:mb-8">
                 {/* WHATSAPP */}
                 <button 
                   onClick={handleWhatsApp}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-emerald-600/30 transform hover:scale-105 active:scale-95"
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 sm:py-4 px-6 rounded-lg sm:rounded-xl font-bold flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-emerald-600/30 transform hover:scale-105 active:scale-95 text-sm sm:text-base min-h-[44px]"
                 >
-                  <MessageCircle size={20} />
+                  <MessageCircle size={18} className="sm:w-5 sm:h-5" />
                   <span>WhatsApp</span>
                 </button>
                 
                 {/* PAYPAL */}
                 <button 
                   onClick={handlePayPal}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-blue-600/30 transform hover:scale-105 active:scale-95"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 sm:py-4 px-6 rounded-lg sm:rounded-xl font-bold flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 shadow-lg hover:shadow-blue-600/30 transform hover:scale-105 active:scale-95 text-sm sm:text-base min-h-[44px]"
                 >
-                  <CreditCard size={20} />
+                  <CreditCard size={18} className="sm:w-5 sm:h-5" />
                   <span>PayPal</span>
                 </button>
               </div>
 
               {/* DIVIDER */}
-              <div className="flex items-center gap-3 mb-8">
+              <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
                 <div className="flex-1 h-px bg-slate-300"></div>
                 <span className="text-xs font-bold text-slate-600 uppercase">OR</span>
                 <div className="flex-1 h-px bg-slate-300"></div>
               </div>
 
               {/* E-TRANSFER */}
-              <div className="glass bg-white/50 border border-slate-200 rounded-xl p-4 mb-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
+              <div className="glass bg-white/50 border border-slate-200 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6">
+                <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
                     <CreditCard size={16} className="text-blue-900" />
                   </div>
-                  <p className="font-bold text-slate-900">Bank Transfer</p>
+                  <p className="font-bold text-slate-900 text-sm sm:text-base">Bank Transfer</p>
                 </div>
-                <p className="text-sm text-slate-700 mb-3">Send E-transfer to:</p>
+                <p className="text-xs sm:text-sm text-slate-700 mb-2 sm:mb-3">Send E-transfer to:</p>
                 <div 
-                  className="bg-slate-900 text-white text-center p-3 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors font-mono text-sm mb-3 select-all"
+                  className="bg-slate-900 text-white text-center p-2.5 sm:p-3 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors font-mono text-xs sm:text-sm mb-2 sm:mb-3 select-all"
                   onClick={() => navigator.clipboard.writeText(MY_EMAIL)}
                   title="Click to copy"
                 >
@@ -274,7 +274,7 @@ function CartPage() {
               </div>
 
               {/* TRUST BADGE */}
-              <div className="flex items-center justify-center gap-2 text-sm text-emerald-700 bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+              <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-emerald-700 bg-emerald-50 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-emerald-200">
                 <Check size={18} className="flex-shrink-0" />
                 <span className="font-bold">100% Secure</span>
               </div>
@@ -284,10 +284,10 @@ function CartPage() {
         </div>
 
         {/* CONTINUE SHOPPING LINK */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 sm:mt-12 text-center">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 font-bold transition-colors group"
+            className="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 font-bold transition-colors group text-sm sm:text-base"
           >
             <ArrowRight size={20} className="rotate-180 group-hover:-translate-x-1 transition-transform" />
             Continue Shopping

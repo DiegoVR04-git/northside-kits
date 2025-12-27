@@ -50,24 +50,24 @@ function App() {
       <Toaster position="top-center" />
       
       {/* TOP ANNOUNCEMENT BAR */}
-      <div className="bg-black text-white text-xs sm:text-sm font-bold py-2 px-4 text-center">
-        🇨🇦 FREE SHIPPING on orders over $120 CAD | Based in British Columbia, Canada
+      <div className="bg-black text-white text-xs sm:text-sm font-bold py-2 px-3 sm:px-4 text-center">
+        🇨🇦 FREE SHIPPING on $120+ CAD | BC-Based
       </div>
       
       {/* PREMIUM GLASSMORPHIC NAVBAR */}
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 py-4">
+        <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
             
             {/* Logo with tracking */}
-            <Link to="/" className="text-xl sm:text-2xl font-black tracking-tighter text-slate-900 hover:opacity-75 transition-opacity duration-300 flex items-center gap-2">
-              <span className="text-2xl">⚽</span>
+            <Link to="/" className="text-lg sm:text-2xl font-black tracking-tighter text-slate-900 hover:opacity-75 transition-opacity duration-300 flex items-center gap-1.5 sm:gap-2">
+              <span className="text-xl sm:text-2xl">⚽</span>
               <span className="hidden sm:inline">NorthSide Kits</span>
-              <span className="sm:hidden">NSK</span>
+              <span className="sm:hidden text-base">NSK</span>
             </Link>
             
             {/* Cart & Mobile Menu */}
-            <div className="flex items-center gap-4 sm:gap-8">
+            <div className="flex items-center gap-3 sm:gap-6 md:gap-8">
               {/* Information Dropdown (Desktop) */}
               <div className="hidden md:block relative group">
                 <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-700 hover:bg-gray-100 transition-all duration-300 text-sm font-medium">
@@ -89,7 +89,7 @@ function App() {
                 to="/wishlist" 
                 className="relative group cursor-pointer transition-all duration-300"
               >
-                <div className="p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
+                <div className="p-2 sm:p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
                   <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-red-600 transition-colors" />
                 </div>
                 {getWishlistCount() > 0 && (
@@ -104,7 +104,7 @@ function App() {
                 to="/cart" 
                 className="relative group cursor-pointer transition-all duration-300"
               >
-                <div className="p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
+                <div className="p-2 sm:p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
                   <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-slate-900 transition-colors" />
                 </div>
                 {cart.length > 0 && (
@@ -117,7 +117,7 @@ function App() {
               {/* Mobile Menu Button */}
               <button 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300 text-slate-700"
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-all duration-300 text-slate-700"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -126,20 +126,27 @@ function App() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pt-4 border-t border-gray-100 space-y-2">
+            <div className="md:hidden mt-3 pt-3 border-t border-gray-100 space-y-1.5">
               <Link 
                 to="/" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors"
+                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
               >
                 Shop
               </Link>
               <a 
                 href="/policy" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors"
+                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
               >
                 Shipping & Returns
+              </a>
+              <a 
+                href="/security-deposit" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
+              >
+                Deposit Policy
               </a>
             </div>
           )}
