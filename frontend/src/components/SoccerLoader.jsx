@@ -20,10 +20,13 @@ function SoccerLoader() {
         <circle cx="12" cy="12" r="3" />
       </svg>
       
-      {/* Loading Text */}
-      <p className="text-lg font-semibold text-slate-700">
-        Warming up the engines... (Waking up the server)
-      </p>
+      {/* Loading Text with Jersey Icon */}
+      <div className="flex items-center gap-2">
+        <span className="text-3xl animate-bounce">👕</span>
+        <p className="text-lg font-semibold text-slate-700">
+          Loading jerseys...
+        </p>
+      </div>
     </div>
   )
 }
