@@ -177,15 +177,9 @@ function Home() {
             <ChevronRight size={18} className={`transition-transform duration-300 ml-auto sm:ml-1 ${showFilters ? 'rotate-180' : ''}`} />
           </button>
 
-          {/* Filters Panel - Drawer Style on Mobile */}
+          {/* Filters Panel - Desktop only */}
           {showFilters && (
-            <>
-              {/* Overlay on mobile */}
-              <div 
-                className="fixed sm:hidden inset-0 top-32 bg-black/30 z-40 backdrop-blur-sm"
-                onClick={() => setShowFilters(false)}
-              />
-              <div className="fixed sm:static inset-0 sm:inset-auto top-32 sm:top-auto left-0 right-0 bottom-0 sm:mt-4 bg-white sm:bg-slate-50 rounded-t-2xl sm:rounded-lg sm:rounded-t-xl border-t-2 sm:border border-slate-200 shadow-2xl sm:shadow-none z-50 sm:z-auto overflow-y-auto p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="hidden sm:grid mt-4 p-6 bg-slate-50 rounded-xl border border-slate-200 grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Team */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Team</label>
@@ -257,25 +251,129 @@ function Home() {
 
               {/* Reset */}
               {hasActiveFilters && (
-                <div className="col-span-1 sm:col-span-2 lg:col-span-5 sticky bottom-0 bg-white sm:bg-slate-50 pt-2 sm:pt-0">
+                <div className="col-span-2 lg:col-span-5">
                   <button
                     onClick={resetFilters}
-                    className="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-bold text-sm shadow-lg"
+                    className="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-bold text-sm"
                   >
                     ✕ Clear All Filters
                   </button>
                 </div>
               )}
-              {/* Mobile Close Button */}
-              <div className="col-span-1 sm:hidden sticky bottom-0 bg-white pt-2">
-                <button
-                  onClick={() => setShowFilters(false)}
-                  className="w-full px-4 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 transition-colors font-bold text-sm"
-                >
-                  Done
-                </button>
-              </div>
             </div>
+          )}
+
+          {/* MOBILE FILTER DRAWER - Bottom Sheet */}
+          {showFilters && (
+            <>
+              {/* Overlay */}
+              <div 
+                className="fixed sm:hidden inset-0 bg-black/40 z-40 backdrop-blur-sm"
+                onClick={() => setShowFilters(false)}
+              />
+              {/* Bottom Sheet */}
+              <div className="fixed sm:hidden bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-2xl z-50 max-h-[80vh] overflow-y-auto">
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-bold text-slate-900">Filter Jerseys</h3>
+                    <button 
+                      onClick={() => setShowFilters(false)}
+                      className="text-gray-500 hover:text-gray-900 transition-colors"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+
+                <div className="p-4 space-y-4">
+                  {/* Team */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Team</label>
+                    <select
+                      value={filters.team}
+                      onChange={(e) => handleFilterChange('team', e.target.value)}
+                      className="input-premium text-sm py-2.5"
+                    >
+                      <option value="">All Teams</option>
+                      {availableFilters.teams && availableFilters.teams.length > 0 && availableFilters.teams.map((team) => (
+                        <option key={team} value={team}>{team}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Type */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Type</label>
+                    <select
+                      value={filters.type}
+                      onChange={(e) => handleFilterChange('type', e.target.value)}
+                      className="input-premium text-sm py-2.5"
+                    >
+                      <option value="">All Types</option>
+                      {availableFilters.types && availableFilters.types.length > 0 && availableFilters.types.map((type) => (
+                        <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* League */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">League</label>
+                    <select
+                      value={filters.league}
+                      onChange={(e) => handleFilterChange('league', e.target.value)}
+                      className="input-premium text-sm py-2.5"
+                    >
+                      <option value="">All Leagues</option>
+                      {availableFilters.leagues && availableFilters.leagues.length > 0 && availableFilters.leagues.map((league) => (
+                        <option key={league} value={league}>{league}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Min Price */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Min Price</label>
+                    <input
+                      type="number"
+                      placeholder="0"
+                      value={filters.minPrice}
+                      onChange={(e) => handleFilterChange('minPrice', e.target.value)}
+                      className="input-premium text-sm py-2.5"
+                    />
+                  </div>
+
+                  {/* Max Price */}
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Max Price</label>
+                    <input
+                      type="number"
+                      placeholder="999"
+                      value={filters.maxPrice}
+                      onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
+                      className="input-premium text-sm py-2.5"
+                    />
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-2 pt-4 border-t border-gray-200">
+                    {hasActiveFilters && (
+                      <button
+                        onClick={resetFilters}
+                        className="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-bold text-sm"
+                      >
+                        ✕ Clear All Filters
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setShowFilters(false)}
+                      className="w-full px-4 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-bold text-sm"
+                    >
+                      Apply Filters
+                    </button>
+                  </div>
+                </div>
+              </div>
             </>
           )}
         </div>
