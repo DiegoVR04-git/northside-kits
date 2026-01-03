@@ -127,11 +127,12 @@ function Home() {
       </Helmet>
       <div className="bg-white">
       {/* PREMIUM HERO SECTION */}
-      <section className="relative overflow-hidden py-20 sm:py-28 px-4 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-        {/* Decorative blur elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-48 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-600/10 rounded-full blur-3xl -ml-48 pointer-events-none"></div>
-
+      <section 
+        className="relative overflow-hidden py-20 sm:py-28 px-4 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 58, 138, 0.75)), url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")'
+        }}
+      >
         <div className="container mx-auto relative z-10 text-center max-w-3xl">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight tracking-tight">
             Premium Football Kits
