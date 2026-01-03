@@ -167,15 +167,19 @@ function Home() {
           {/* Filter Toggle */}
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all duration-300 font-medium text-sm sm:text-sm"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all duration-300 font-medium text-sm sm:text-sm hover:shadow-lg hover:shadow-red-600/40"
           >
-            <ChevronRight size={18} className={`transition-transform duration-300 ${showFilters ? 'rotate-90' : ''}`} />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            {hasActiveFilters && <span className="bg-red-800 text-white px-2 py-0.5 rounded-full text-xs font-bold">Active</span>}
             Filters
+            <ChevronRight size={18} className={`transition-transform duration-300 ml-auto sm:ml-1 ${showFilters ? 'rotate-180' : ''}`} />
           </button>
 
-          {/* Filters Panel */}
+          {/* Filters Panel - Drawer Style on Mobile */}
           {showFilters && (
-            <div className="mt-4 p-4 sm:p-6 bg-slate-50 rounded-lg sm:rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="fixed sm:static inset-0 sm:inset-auto top-32 sm:top-auto left-0 right-0 bottom-0 sm:mt-4 bg-white sm:bg-slate-50 rounded-t-2xl sm:rounded-lg sm:rounded-t-xl border-t-2 sm:border border-slate-200 shadow-2xl sm:shadow-none z-40 sm:z-auto overflow-y-auto p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {/* Team */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Team</label>
@@ -247,15 +251,24 @@ function Home() {
 
               {/* Reset */}
               {hasActiveFilters && (
-                <div className="sm:col-span-2 lg:col-span-5">
+                <div className="col-span-1 sm:col-span-2 lg:col-span-5 sticky bottom-0 bg-white sm:bg-slate-50 pt-2 sm:pt-0">
                   <button
                     onClick={resetFilters}
-                    className="w-full px-4 py-2.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors font-bold text-sm"
+                    className="w-full px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-bold text-sm shadow-lg"
                   >
-                    Clear Filters
+                    ✕ Clear All Filters
                   </button>
                 </div>
               )}
+              {/* Mobile Close Button */}
+              <div className="col-span-1 sm:hidden sticky bottom-0 bg-white pt-2">
+                <button
+                  onClick={() => setShowFilters(false)}
+                  className="w-full px-4 py-3 bg-slate-200 text-slate-900 rounded-lg hover:bg-slate-300 transition-colors font-bold text-sm"
+                >
+                  Done
+                </button>
+              </div>
             </div>
           )}
         </div>

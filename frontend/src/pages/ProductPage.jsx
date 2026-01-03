@@ -199,8 +199,8 @@ function ProductPage() {
       </div>
 
       {/* PRODUCT SHOWCASE */}
-      <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-16">
+      <div className="container mx-auto px-3 sm:px-6 py-4 sm:py-12 pb-24 sm:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-12 lg:gap-16">
           
           {/* GALLERY - STICKY */}
           <div className="lg:sticky lg:top-20 lg:h-fit">
@@ -459,37 +459,41 @@ function ProductPage() {
 
       {/* STICKY MOBILE ADD TO CART BAR */}
       {jersey && (
-        <div className="hidden sm:hidden md:hidden lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-40 sm:hidden">
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-            {/* Price */}
-            <div className="flex-shrink-0">
-              {jersey.sizes && jersey.sizes.length > 0 ? (
-                <p className="text-2xl font-black text-slate-900">${jersey.price}</p>
-              ) : (
-                <p className="text-gray-600 font-bold">Out of Stock</p>
-              )}
-            </div>
+        <div className="fixed bottom-0 left-0 right-0 sm:hidden bg-white border-t border-gray-200 p-3 z-40 shadow-2xl">
+          <div className="max-w-full flex flex-col gap-2">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex-shrink-0">
+                {jersey.sizes && jersey.sizes.length > 0 ? (
+                  <p className="text-lg font-black text-slate-900">${jersey.price}</p>
+                ) : (
+                  <p className="text-gray-600 font-bold text-sm">Out of Stock</p>
+                )}
+              </div>
 
-            {/* Add to Cart Button */}
-            <button 
-              disabled={!selectedSize || !jersey.sizes || jersey.sizes.length === 0}
-              onClick={handleAddToCart}
-              className={`flex-1 py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
-                selectedSize && jersey.sizes && jersey.sizes.length > 0
-                  ? 'bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/40' 
-                  : 'bg-gray-100 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              {addedToCart ? (
-                <><Check size={20} className="text-green-400" /> Added!</>
-              ) : jersey.sizes && jersey.sizes.length === 0 ? (
-                'Out of Stock'
-              ) : !selectedSize ? (
-                'Select Size'
-              ) : (
-                <><ShoppingCart size={20} /> Add</>
-              )}
-            </button>
+              {/* Add to Cart Button */}
+              <button 
+                disabled={!selectedSize || !jersey.sizes || jersey.sizes.length === 0}
+                onClick={handleAddToCart}
+                className={`flex-1 py-3 px-3 rounded-lg font-bold flex items-center justify-center gap-1.5 transition-all duration-300 min-h-[44px] text-xs ${
+                  selectedSize && jersey.sizes && jersey.sizes.length > 0
+                    ? 'bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/40' 
+                    : 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {addedToCart ? (
+                  <><Check size={16} className="text-green-400" /> Added!</>
+                ) : jersey.sizes && jersey.sizes.length === 0 ? (
+                  'Out of Stock'
+                ) : !selectedSize ? (
+                  'Select Size'
+                ) : (
+                  <><ShoppingCart size={16} /> Add Cart</>
+                )}
+              </button>
+            </div>
+            {!selectedSize && jersey.sizes && jersey.sizes.length > 0 && (
+              <p className="text-xs text-gray-500 text-center">Select a size above</p>
+            )}
           </div>
         </div>
       )}

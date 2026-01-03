@@ -56,23 +56,23 @@ function App() {
       
       {/* PREMIUM GLASSMORPHIC NAVBAR */}
       <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100">
-        <div className="container mx-auto px-3 sm:px-6 py-3 sm:py-4">
+        <div className="container mx-auto px-3 sm:px-6 py-2.5 sm:py-4">
           <div className="flex justify-between items-center">
             
             {/* Logo with tracking */}
-            <Link to="/" className="text-lg sm:text-2xl font-black tracking-tighter text-slate-900 hover:opacity-75 transition-opacity duration-300 flex items-center gap-1.5 sm:gap-2">
+            <Link to="/" className="text-lg sm:text-2xl font-black tracking-tighter text-slate-900 hover:opacity-75 transition-opacity duration-300 flex items-center gap-1 sm:gap-2 flex-shrink-0">
               <span className="text-xl sm:text-2xl">⚽</span>
               <span className="hidden sm:inline">NorthSide Kits</span>
               <span className="sm:hidden text-base">NSK</span>
             </Link>
             
             {/* Cart & Mobile Menu */}
-            <div className="flex items-center gap-3 sm:gap-6 md:gap-8">
+            <div className="flex items-center gap-2 sm:gap-4 md:gap-8">
               {/* Information Dropdown (Desktop) */}
               <div className="hidden md:block relative group">
-                <button className="flex items-center gap-1 px-4 py-2 rounded-lg text-slate-700 hover:bg-gray-100 transition-all duration-300 text-sm font-medium">
+                <button className="flex items-center gap-1 px-3 sm:px-4 py-2 rounded-lg text-slate-700 hover:bg-gray-100 transition-all duration-300 text-xs sm:text-sm font-medium">
                   Info
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
                   <a href="/policy" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
@@ -87,13 +87,11 @@ function App() {
               {/* Wishlist Icon */}
               <Link 
                 to="/wishlist" 
-                className="relative group cursor-pointer transition-all duration-300"
+                className="relative group cursor-pointer transition-all duration-300 p-1.5 sm:p-2 rounded-lg hover:bg-gray-100"
               >
-                <div className="p-2 sm:p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                  <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-red-600 transition-colors" />
-                </div>
+                <Heart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-red-600 transition-colors" />
                 {getWishlistCount() > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-lg animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center border border-white shadow-lg animate-pulse">
                     {getWishlistCount()}
                   </span>
                 )}
@@ -102,13 +100,11 @@ function App() {
               {/* Cart Icon */}
               <Link 
                 to="/cart" 
-                className="relative group cursor-pointer transition-all duration-300"
+                className="relative group cursor-pointer transition-all duration-300 p-1.5 sm:p-2 rounded-lg hover:bg-gray-100"
               >
-                <div className="p-2 sm:p-2.5 rounded-lg hover:bg-gray-100 transition-all duration-300">
-                  <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-slate-900 transition-colors" />
-                </div>
+                <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 text-slate-700 group-hover:text-slate-900 transition-colors" />
                 {cart.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-slate-900 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white shadow-lg animate-pulse">
+                  <span className="absolute -top-1 -right-1 bg-slate-900 text-white text-xs font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center border border-white shadow-lg animate-pulse">
                     {cart.length}
                   </span>
                 )}
@@ -117,7 +113,7 @@ function App() {
               {/* Mobile Menu Button */}
               <button 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-all duration-300 text-slate-700"
+                className="md:hidden p-1.5 rounded-lg hover:bg-gray-100 transition-all duration-300 text-slate-700"
               >
                 {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -126,25 +122,25 @@ function App() {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-3 pt-3 border-t border-gray-100 space-y-1.5">
+            <div className="md:hidden mt-2 pt-2 border-t border-gray-100 space-y-1">
               <Link 
                 to="/" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
+                className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
               >
                 Shop
               </Link>
               <a 
                 href="/policy" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
+                className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
               >
                 Shipping & Returns
               </a>
               <a 
                 href="/security-deposit" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2.5 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
+                className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
               >
                 Deposit Policy
               </a>
