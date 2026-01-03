@@ -13,6 +13,7 @@ import AdminPage from './pages/AdminPage'
 import LoginPage from './pages/LoginPage'
 import PolicyPage from './pages/PolicyPage'
 import SecurityDepositPage from './pages/SecurityDepositPage'
+import FacebookMarketplacePage from './pages/FacebookMarketplacePage'
 import WishlistPage from './pages/WishlistPage' // <--- IMPORTS WISHLIST PAGE
 
 // --- COMPONENTE GUARDIA DE SEGURIDAD ---
@@ -51,7 +52,7 @@ function App() {
       
       {/* TOP ANNOUNCEMENT BAR */}
       <div className="bg-black text-white text-xs sm:text-sm font-bold py-2 px-3 sm:px-4 text-center">
-        🇨🇦 FREE SHIPPING on $120+ CAD | BC-Based
+        🇨🇦 FREE SHIPPING on $120+ CAD | BC-Based | 📍 Langley, BC - Local Pickup Available
       </div>
       
       {/* PREMIUM GLASSMORPHIC NAVBAR */}
@@ -75,6 +76,9 @@ function App() {
                   <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
                 </button>
                 <div className="absolute left-0 mt-0 w-48 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 py-2">
+                  <a href="/facebook-marketplace" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
+                    FB Marketplace
+                  </a>
                   <a href="/policy" className="block px-4 py-2 text-slate-700 hover:bg-gray-50 transition-colors text-sm">
                     Shipping & Returns
                   </a>
@@ -138,6 +142,13 @@ function App() {
                 Shipping & Returns
               </a>
               <a 
+                href="/facebook-marketplace" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
+              >
+                FB Marketplace
+              </a>
+              <a 
                 href="/security-deposit" 
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-3 py-2 rounded-lg text-slate-700 hover:bg-gray-50 transition-colors text-sm"
@@ -159,6 +170,7 @@ function App() {
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/security-deposit" element={<SecurityDepositPage />} />
+          <Route path="/facebook-marketplace" element={<FacebookMarketplacePage />} />
           
           {/* PUBLIC LOGIN ROUTE */}
           <Route path="/login" element={<LoginPage />} />

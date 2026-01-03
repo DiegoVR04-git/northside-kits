@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ChevronRight, Star, Heart } from 'lucide-react'
+import { ChevronRight, Star, Heart, MessageCircle } from 'lucide-react'
 import toast from 'react-hot-toast'
 import SkeletonCard from '../components/SkeletonCard'
 import LiveReviews from '../components/LiveReviews'
@@ -134,6 +134,12 @@ function Home() {
         }}
       >
         <div className="container mx-auto relative z-10 text-center max-w-3xl">
+          {/* Location Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 px-4 py-2 rounded-full mb-6 text-white">
+            <span className="text-lg">📍</span>
+            <span className="text-sm sm:text-base font-bold">Langley, BC • Local Pickup Available</span>
+          </div>
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight tracking-tight">
             Premium Football Kits
           </h1>
