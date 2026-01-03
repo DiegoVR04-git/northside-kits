@@ -179,7 +179,13 @@ function Home() {
 
           {/* Filters Panel - Drawer Style on Mobile */}
           {showFilters && (
-            <div className="fixed sm:static inset-0 sm:inset-auto top-32 sm:top-auto left-0 right-0 bottom-0 sm:mt-4 bg-white sm:bg-slate-50 rounded-t-2xl sm:rounded-lg sm:rounded-t-xl border-t-2 sm:border border-slate-200 shadow-2xl sm:shadow-none z-40 sm:z-auto overflow-y-auto p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+            <>
+              {/* Overlay on mobile */}
+              <div 
+                className="fixed sm:hidden inset-0 top-32 bg-black/30 z-40 backdrop-blur-sm"
+                onClick={() => setShowFilters(false)}
+              />
+              <div className="fixed sm:static inset-0 sm:inset-auto top-32 sm:top-auto left-0 right-0 bottom-0 sm:mt-4 bg-white sm:bg-slate-50 rounded-t-2xl sm:rounded-lg sm:rounded-t-xl border-t-2 sm:border border-slate-200 shadow-2xl sm:shadow-none z-50 sm:z-auto overflow-y-auto p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
               {/* Team */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Team</label>
@@ -270,6 +276,7 @@ function Home() {
                 </button>
               </div>
             </div>
+            </>
           )}
         </div>
       </section>
