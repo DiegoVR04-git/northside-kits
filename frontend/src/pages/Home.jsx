@@ -372,7 +372,7 @@ function Home() {
                           <button className={`px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg text-xs font-bold transition-all duration-300 hover:-translate-y-1 flex-shrink-0 ${
                             isSoldOut 
                               ? 'bg-gray-100 text-gray-500' 
-                              : 'bg-slate-900 text-white group-hover:shadow-lg'
+                              : 'bg-red-600 text-white group-hover:shadow-lg hover:shadow-red-600/40 hover:bg-red-700'
                           }`}>
                             {isSoldOut ? 'View' : 'View'}
                           </button>
@@ -390,7 +390,7 @@ function Home() {
                 {displayLimit < jerseys.length && (
                   <button
                     onClick={() => setDisplayLimit(displayLimit + 28)}
-                    className="px-6 sm:px-8 py-3 bg-slate-900 text-white font-bold rounded-lg hover:-translate-y-1 transition-all duration-300 hover:shadow-lg text-sm sm:text-base"
+                    className="px-6 sm:px-8 py-3 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 hover:-translate-y-1 transition-all duration-300 hover:shadow-lg hover:shadow-red-600/40 text-sm sm:text-base"
                     style={{ fontFamily: 'Inter' }}
                   >
                     Load More Jerseys

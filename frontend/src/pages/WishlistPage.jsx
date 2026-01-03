@@ -55,7 +55,7 @@ export default function WishlistPage() {
               </p>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
+                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-red-600/40"
               >
                 Go Explore Kits
                 <ArrowRight size={20} />
@@ -121,7 +121,7 @@ export default function WishlistPage() {
                   {displayLimit < wishlist.length && (
                     <button
                       onClick={handleLoadMore}
-                      className="bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg"
+                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-red-600/40"
                     >
                       Load More ({wishlist.length - displayLimit} remaining)
                     </button>

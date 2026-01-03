@@ -331,9 +331,9 @@ function ProductPage() {
             <button 
               disabled={!selectedSize || jersey.sizes.length === 0}
               onClick={handleAddToCart}
-              className={`w-full py-3 sm:py-4 px-6 rounded-lg font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all duration-300 hover:-translate-y-1 ${
+              className={`w-full py-3 sm:py-4 px-6 rounded-lg font-bold text-base sm:text-lg flex items-center justify-center gap-3 transition-all duration-300 ${
                 selectedSize && jersey.sizes.length > 0
-                  ? 'bg-slate-900 text-white shadow-md hover:shadow-lg' 
+                  ? 'btn-action' 
                   : 'bg-gray-100 text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -397,7 +397,7 @@ function ProductPage() {
                       
                       <div className="flex justify-between items-center pt-3 border-t border-gray-100">
                         <span className="text-lg font-black text-slate-900">${relatedJersey.price}</span>
-                        <button className="px-2 py-1 bg-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 transition-all duration-300">
+                        <button className="px-2 py-1 bg-red-600 text-white text-xs font-bold rounded-lg hover:bg-red-700 hover:shadow-md transition-all duration-300">
                           View
                         </button>
                       </div>
@@ -476,7 +476,7 @@ function ProductPage() {
               onClick={handleAddToCart}
               className={`flex-1 py-3 px-4 rounded-lg font-bold flex items-center justify-center gap-2 transition-all duration-300 ${
                 selectedSize && jersey.sizes && jersey.sizes.length > 0
-                  ? 'bg-slate-900 text-white hover:shadow-lg' 
+                  ? 'bg-red-600 text-white hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/40' 
                   : 'bg-gray-100 text-gray-500 cursor-not-allowed'
               }`}
             >
